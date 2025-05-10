@@ -26,7 +26,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* About/Logo Section */}
           <div className="mb-6 md:mb-0">
-            <Link href="/" className="text-3xl font-bold text-foreground hover:text-accent transition-colors">
+            <Link href="/" className="text-3xl font-bold text-foreground hover:text-accent transition-colors font-heading">
               Pratham Jain
             </Link>
             <p className="mt-3 text-sm">
@@ -36,7 +36,7 @@ export default function Footer() {
 
           {/* Quick Links Section */}
           <div>
-            <h3 className="text-lg font-semibold text-foreground mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-4 font-heading">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
@@ -51,7 +51,7 @@ export default function Footer() {
 
           {/* Connect Section */}
           <div>
-            <h3 className="text-lg font-semibold text-foreground mb-4">Connect</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-4 font-heading">Connect</h3>
             <ul className="space-y-3">
               {socialLinks.map((link) => (
                 <li key={link.name}>
@@ -72,7 +72,7 @@ export default function Footer() {
           
           {/* Get in Touch Section */}
           <div>
-            <h3 className="text-lg font-semibold text-foreground mb-4">Get in Touch</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-4 font-heading">Get in Touch</h3>
             <p className="mb-4 text-sm">
               Have a project in mind or want to collaborate? Feel free to reach out.
             </p>

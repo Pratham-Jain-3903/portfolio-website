@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -32,7 +33,7 @@ export default function Navbar() {
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
-          <Link href="/" className="text-2xl font-bold text-foreground hover:text-accent transition-colors">
+          <Link href="/" className="text-2xl font-bold text-foreground hover:text-accent transition-colors font-heading">
             Pratham Jain
           </Link>
           <nav className="hidden md:flex space-x-2">

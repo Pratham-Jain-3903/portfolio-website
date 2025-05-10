@@ -33,7 +33,7 @@ const Skills: React.FC = () => {
       <CardContent className="space-y-8 pt-2">
         {skillsData.map((category) => (
           <div key={category.name}>
-            <h3 className="text-2xl font-semibold text-foreground mb-4 flex items-center">
+            <h3 className="text-2xl font-semibold text-foreground mb-4 flex items-center font-heading">
               <category.icon className="mr-3 h-6 w-6 text-accent" />
               {category.name}
             </h3>

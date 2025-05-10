@@ -67,7 +67,7 @@ const features: FeatureItem[] = [
 const FeatureGrid: React.FC = () => {
   return (
     <section className="w-full py-8">
-       <h2 className="text-4xl md:text-5xl font-bold text-accent mb-12 text-center flex items-center justify-center">
+       <h2 className="text-4xl md:text-5xl font-bold text-accent mb-12 text-center flex items-center justify-center font-heading">
         <LayoutGrid className="mr-3 h-10 w-10" /> Explore More
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -11,9 +11,8 @@ export default {
   theme: {
   	extend: {
       fontFamily: {
-        sans: ['var(--font-geist-sans)', ...defaultTheme.fontFamily.sans],
-        mono: ['var(--font-geist-mono)', ...defaultTheme.fontFamily.mono],
-        dotgothic16: ['var(--font-dot-gothic16)', ...defaultTheme.fontFamily.sans],
+        sans: ['var(--font-noto-sans)', ...defaultTheme.fontFamily.sans],
+        heading: ['var(--font-dosis)', ...defaultTheme.fontFamily.sans],
       },
   		colors: {
   			background: 'hsl(var(--background))',
