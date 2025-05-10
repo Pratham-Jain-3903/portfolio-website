@@ -13,7 +13,7 @@ const quickLinks = [
 ];
 
 const socialLinks = [
-  { name: 'GitHub', href: 'https://github.com/prathamjain', icon: Github, value: 'github.com/prathamjain' },
+  { name: 'GitHub', href: 'https://github.com/Pratham-Jain-3903', icon: Github, value: 'github.com/Pratham-Jain-3903' },
   { name: 'LinkedIn', href: 'https://linkedin.com/in/prathamjain', icon: Linkedin, value: 'linkedin.com/in/prathamjain' },
 ];
 
