@@ -1,4 +1,4 @@
-import HeaderSection from '@/components/sections/HeaderSection';
+import HeroSection from '@/components/sections/HeroSection';
 import ContactInfo from '@/components/sections/ContactInfo';
 import Objective from '@/components/sections/Objective';
 import Education from '@/components/sections/Education';
@@ -10,25 +10,25 @@ import { Separator } from '@/components/ui/separator';
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <HeaderSection />
-      <main className="container mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="space-y-12 md:space-y-16">
+      <HeroSection />
+      <main className="container mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="space-y-16 md:space-y-20">
           <ContactInfo />
-          <Separator className="my-8 md:my-12" />
+          <Separator className="my-10 md:my-16" />
           <Objective />
-          <Separator className="my-8 md:my-12" />
+          <Separator className="my-10 md:my-16" />
           <Experience />
-          <Separator className="my-8 md:my-12" />
+          <Separator className="my-10 md:my-16" />
           <Education />
-          <Separator className="my-8 md:my-12" />
+          <Separator className="my-10 md:my-16" />
           <Skills />
-          <Separator className="my-8 md:my-12" />
+          <Separator className="my-10 md:my-16" />
           <FeatureGrid />
         </div>
       </main>
-      <footer className="py-8 text-center text-muted-foreground border-t mt-16">
+      <footer className="py-10 text-center text-muted-foreground border-t mt-20">
         <p>&copy; {new Date().getFullYear()} Pratham Jain. All rights reserved.</p>
-        <p className="text-sm">Designed with passion and precision.</p>
+        <p className="text-sm">Crafted with passion and precision.</p>
       </footer>
     </div>
   );

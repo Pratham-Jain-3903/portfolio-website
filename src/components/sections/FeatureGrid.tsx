@@ -9,7 +9,7 @@ interface FeatureItem {
   name: string;
   description: string;
   link: string;
-  className?: string; // For col-span and row-span
+  className?: string; 
   cta: string;
 }
 
@@ -18,7 +18,7 @@ const features: FeatureItem[] = [
     icon: Briefcase,
     name: "My Projects",
     description: "Explore a collection of my personal and academic projects, showcasing practical application of my skills.",
-    link: "#projects", // Placeholder, update with actual links
+    link: "#projects", 
     className: "md:col-span-2 md:row-span-2",
     cta: "View Projects"
   },
@@ -42,7 +42,7 @@ const features: FeatureItem[] = [
     icon: DownloadCloud,
     name: "Download Resume",
     description: "Get a PDF copy of my comprehensive resume detailing my skills and experience.",
-    link: "/pratham-jain-resume.pdf", // Placeholder
+    link: "/pratham-jain-resume.pdf", 
     className: "md:col-span-1 md:row-span-1",
     cta: "Download PDF"
   },
@@ -50,7 +50,7 @@ const features: FeatureItem[] = [
     icon: Github,
     name: "Open Source",
     description: "Check out my contributions to the open source community and collaborative projects.",
-    link: "https://github.com/prathamjain", // Placeholder
+    link: "https://github.com/prathamjain", 
     className: "md:col-span-2 md:row-span-1",
     cta: "Visit GitHub"
   },
@@ -66,19 +66,19 @@ const features: FeatureItem[] = [
 
 const FeatureGrid: React.FC = () => {
   return (
-    <section className="w-full">
-       <h2 className="text-3xl font-semibold text-primary mb-8 text-center flex items-center justify-center">
-        <LayoutGrid className="mr-3 h-8 w-8" /> Explore More
+    <section className="w-full py-8">
+       <h2 className="text-4xl md:text-5xl font-bold text-primary mb-12 text-center flex items-center justify-center">
+        <LayoutGrid className="mr-3 h-10 w-10" /> Explore More
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {features.map((feature) => (
-          <Card key={feature.name} className={`flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300 ${feature.className || 'md:col-span-1 md:row-span-1'}`}>
-            <CardHeader>
-              <div className="flex items-center space-x-3 mb-2">
+          <Card key={feature.name} className={`flex flex-col shadow-xl hover:shadow-2xl transition-shadow duration-300 rounded-xl ${feature.className || 'md:col-span-1 md:row-span-1'}`}>
+            <CardHeader className="pb-4">
+              <div className="flex items-center space-x-3 mb-3">
                 <feature.icon className="h-10 w-10 text-accent" />
-                <CardTitle className="text-xl text-primary">{feature.name}</CardTitle>
+                <CardTitle className="text-2xl font-semibold text-primary">{feature.name}</CardTitle>
               </div>
-              <CardDescription className="text-sm text-muted-foreground h-16 overflow-hidden">
+              <CardDescription className="text-md text-muted-foreground min-h-[60px]">
                 {feature.description}
               </CardDescription>
             </CardHeader>
@@ -86,7 +86,7 @@ const FeatureGrid: React.FC = () => {
               {/* Additional content can go here if needed */}
             </CardContent>
             <CardFooter>
-              <Button asChild variant="default" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+              <Button asChild variant="default" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-md py-3 rounded-md font-semibold">
                 <Link href={feature.link} target={feature.link.startsWith('http') || feature.link.startsWith('/') ? '_blank' : '_self'}>
                   {feature.cta}
                 </Link>

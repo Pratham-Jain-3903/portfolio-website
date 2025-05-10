@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Code, Package, Cloud, TerminalSquare, Database, Server, BookOpen, BrainCircuit, BarChartBig, Sparkles, Wrench } from 'lucide-react'; // Added Wrench for Skills title
+import { Code, Package, Cloud, TerminalSquare, Database, Server, BookOpen, BrainCircuit, BarChartBig, Sparkles, Wrench } from 'lucide-react';
 
 interface SkillCategory {
   name: string;
@@ -24,22 +24,22 @@ const skillsData: SkillCategory[] = [
 
 const Skills: React.FC = () => {
   return (
-    <Card className="w-full shadow-lg">
+    <Card className="w-full shadow-xl rounded-xl">
       <CardHeader>
-        <CardTitle className="text-2xl font-semibold text-primary flex items-center">
-          <Wrench className="mr-3 h-7 w-7" /> Technical Skills
+        <CardTitle className="text-3xl lg:text-4xl font-bold text-primary flex items-center">
+          <Wrench className="mr-3 h-8 w-8" /> Technical Skills
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-8 pt-2">
         {skillsData.map((category) => (
           <div key={category.name}>
-            <h3 className="text-xl font-semibold text-foreground mb-3 flex items-center">
-              <category.icon className="mr-2 h-5 w-5 text-accent" />
+            <h3 className="text-2xl font-semibold text-foreground mb-4 flex items-center">
+              <category.icon className="mr-3 h-6 w-6 text-accent" />
               {category.name}
             </h3>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-3">
               {category.skills.map((skill) => (
-                <Badge key={skill} variant="secondary" className="px-3 py-1 text-sm bg-secondary hover:bg-secondary/80 text-secondary-foreground rounded-full shadow-sm">
+                <Badge key={skill} variant="secondary" className="px-4 py-2 text-md bg-secondary hover:bg-secondary/80 text-secondary-foreground rounded-full shadow-md">
                   {skill}
                 </Badge>
               ))}

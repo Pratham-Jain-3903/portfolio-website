@@ -13,24 +13,24 @@ const contactDetails = [
 
 const ContactInfo: React.FC = () => {
   return (
-    <Card className="w-full shadow-lg">
+    <Card className="w-full shadow-xl rounded-xl" id="contact-info">
       <CardHeader>
-        <CardTitle className="text-2xl font-semibold text-primary flex items-center">
-          <User className="mr-3 h-7 w-7" /> Contact Information
+        <CardTitle className="text-3xl lg:text-4xl font-bold text-primary flex items-center">
+          <User className="mr-3 h-8 w-8" /> Contact Information
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-6 pt-2">
         {contactDetails.map((detail) => (
-          <div key={detail.label} className="flex items-center space-x-3">
-            <detail.icon className="h-5 w-5 text-accent" />
+          <div key={detail.label} className="flex items-start space-x-4">
+            <detail.icon className="h-6 w-6 text-accent mt-1" />
             <div>
-              <p className="text-sm font-medium text-muted-foreground">{detail.label}</p>
+              <p className="text-md font-semibold text-muted-foreground">{detail.label}</p>
               {detail.href ? (
-                <Link href={detail.href} target={detail.target || '_self'} className="text-foreground hover:text-primary transition-colors duration-200">
+                <Link href={detail.href} target={detail.target || '_self'} className="text-lg text-foreground hover:text-primary transition-colors duration-200 break-all">
                   {detail.value}
                 </Link>
               ) : (
-                <p className="text-foreground">{detail.value}</p>
+                <p className="text-lg text-foreground">{detail.value}</p>
               )}
             </div>
           </div>
