@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from 'next/link';
@@ -36,9 +35,9 @@ export default function Navbar() {
           <Link href="/" className="text-2xl font-bold text-foreground hover:text-accent transition-colors">
             Pratham Jain
           </Link>
-          <nav className="hidden md:flex space-x-6">
+          <nav className="hidden md:flex space-x-2">
             {navLinks.map((link) => (
-              <Button key={link.name} variant="ghost" asChild className="text-lg font-medium text-foreground hover:text-accent hover:bg-transparent">
+              <Button key={link.name} variant="ghost" asChild className="text-lg font-medium text-foreground hover:text-accent">
                 <Link href={link.href}>{link.name}</Link>
               </Button>
             ))}

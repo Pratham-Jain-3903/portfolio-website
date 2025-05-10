@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -33,12 +32,13 @@ export default function ScrollToTopButton() {
 
   return (
     <Button
-      variant="outline"
+      variant="default" // Use default for structural styles like backdrop-blur, border-width
       size="icon"
       onClick={scrollToTop}
       className={cn(
-        "fixed bottom-8 right-8 z-50 rounded-full p-3 shadow-lg transition-opacity duration-300 ease-in-out",
-        "bg-accent/80 hover:bg-accent text-accent-foreground border-accent hover:border-accent-foreground",
+        "fixed bottom-8 right-8 z-50 rounded-full p-3 shadow-lg transition-all duration-300 ease-in-out",
+        // Override colors from 'default' variant to use 'accent' and match the new pattern
+        "bg-accent/20 hover:bg-accent/30 border-accent/40 text-accent-foreground backdrop-blur-md", 
         isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
       )}
       aria-label="Scroll to top"

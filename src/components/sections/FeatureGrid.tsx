@@ -86,7 +86,11 @@ const FeatureGrid: React.FC = () => {
               {/* Additional content can go here if needed */}
             </CardContent>
             <CardFooter>
-              <Button asChild variant="default" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-md py-3 rounded-md font-semibold">
+              <Button 
+                asChild 
+                variant="default" 
+                className="w-full text-md py-3 font-semibold" // Variant handles new style; kept specific padding/font
+              >
                 <Link href={feature.link} target={feature.link.startsWith('http') || feature.link.startsWith('/') ? '_blank' : '_self'}>
                   {feature.cta}
                 </Link>
