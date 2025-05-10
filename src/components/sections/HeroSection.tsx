@@ -31,7 +31,7 @@ export default function HeroSection() {
       </div>
       
       <div className="relative z-10 flex flex-col items-center justify-center text-center p-4 md:p-8 mt-20"> {/* Added mt-20 for navbar space */}
-        <h1 className="text-7xl sm:text-8xl md:text-9xl lg:text-[180px] font-black tracking-tighter leading-none drop-shadow-xl">
+        <h1 className="font-dotgothic16 text-7xl sm:text-8xl md:text-9xl lg:text-[180px] font-black tracking-tighter leading-none drop-shadow-xl">
           <span className="block text-foreground">PRATHAM</span>
           <span className="block text-accent">JAIN</span>
         </h1>
