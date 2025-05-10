@@ -41,7 +41,7 @@ const Experience: React.FC = () => {
   return (
     <Card className="w-full shadow-xl rounded-xl">
       <CardHeader>
-        <CardTitle className="text-3xl lg:text-4xl font-bold text-primary flex items-center">
+        <CardTitle className="text-3xl lg:text-4xl font-bold text-accent flex items-center">
           <Briefcase className="mr-3 h-8 w-8" /> Experience
         </CardTitle>
       </CardHeader>

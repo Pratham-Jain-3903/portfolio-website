@@ -15,7 +15,7 @@ const ContactInfo: React.FC = () => {
   return (
     <Card className="w-full shadow-xl rounded-xl" id="contact-info">
       <CardHeader>
-        <CardTitle className="text-3xl lg:text-4xl font-bold text-primary flex items-center">
+        <CardTitle className="text-3xl lg:text-4xl font-bold text-accent flex items-center">
           <User className="mr-3 h-8 w-8" /> Contact Information
         </CardTitle>
       </CardHeader>
@@ -26,7 +26,7 @@ const ContactInfo: React.FC = () => {
             <div>
               <p className="text-md font-semibold text-muted-foreground">{detail.label}</p>
               {detail.href ? (
-                <Link href={detail.href} target={detail.target || '_self'} className="text-lg text-foreground hover:text-primary transition-colors duration-200 break-all">
+                <Link href={detail.href} target={detail.target || '_self'} className="text-lg text-foreground hover:text-accent transition-colors duration-200 break-all">
                   {detail.value}
                 </Link>
               ) : (
