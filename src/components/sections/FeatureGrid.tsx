@@ -70,9 +70,9 @@ const FeatureGrid: React.FC = () => {
        <h2 className="text-4xl md:text-5xl font-bold text-accent mb-12 text-center flex items-center justify-center font-heading">
         <LayoutGrid className="mr-3 h-10 w-10" /> Explore More
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-0"> {/* Changed gap-8 to gap-0 */}
         {features.map((feature) => (
-          <Card key={feature.name} className={`flex flex-col shadow-xl hover:shadow-2xl transition-shadow duration-300 rounded-xl ${feature.className || 'md:col-span-1 md:row-span-1'}`}>
+          <Card key={feature.name} className={`flex flex-col shadow-xl hover:shadow-2xl transition-shadow duration-300 rounded-none first:rounded-tl-xl last:rounded-br-xl md:first:rounded-tl-xl md:last:rounded-br-xl md:[&:nth-child(3)]:rounded-tr-xl md:[&:nth-child(4)]:rounded-bl-xl ${feature.className || 'md:col-span-1 md:row-span-1'}`}> {/* Adjusted rounding for gap-0 */}
             <CardHeader className="pb-4">
               <div className="flex items-center space-x-3 mb-3">
                 <feature.icon className="h-10 w-10 text-accent" />

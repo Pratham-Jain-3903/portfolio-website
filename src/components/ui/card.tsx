@@ -9,7 +9,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "rounded-lg border border-border/40 bg-background/20 text-card-foreground shadow-sm backdrop-blur-md", // Applied ghostly effect
+      "border border-border/40 bg-background/20 text-card-foreground shadow-sm backdrop-blur-md", // Applied ghostly effect, removed default rounded-lg
       className
     )}
     {...props}
