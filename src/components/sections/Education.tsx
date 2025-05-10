@@ -11,10 +11,10 @@ interface EducationEntry {
 
 const educationData: EducationEntry[] = [
   {
-    degree: 'Bachelor of Technology in Computer Science and Engineering',
-    institution: 'Indian Institute of Technology, Delhi',
-    cgpa: '8.75/10',
-    year: '2019 - 2023',
+    degree: 'B.Tech, Computer Science and Engineering',
+    institution: 'Indian Institute of Information Technology (IIIT), Raichur',
+    cgpa: '8.2 / 10.0',
+    year: 'Dec 2021– Apr 2025',
   },
   // Add more education entries if needed
 ];

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users, Heart, BookOpen, Lightbulb } from 'lucide-react'; // Added relevant icons
+import { Badge } from '@/components/ui/badge'; // Import Badge component
 import Image from 'next/image';
 
 interface VolunteerExperienceEntry {
@@ -45,13 +46,17 @@ const volunteerExperienceData: VolunteerExperienceEntry[] = [
 
 const VolunteerExperience: React.FC = () => {
   return (
-    <Card className="w-full shadow-xl rounded-xl" id="volunteer-experience">
-      <CardHeader>
-        <CardTitle className="text-3xl lg:text-4xl font-bold text-accent flex items-center">
-          <Heart className="mr-3 h-8 w-8" /> Volunteer Experience
+    <Card className="w-full shadow-xl rounded-xl overflow-hidden border border-border/50" id="volunteer-experience">
+      <CardHeader className="bg-gradient-to-r from-accent/5 to-accent/10 pb-6">
+        <CardTitle className="text-3xl lg:text-4xl font-bold text-foreground flex items-center">
+          <Heart className="mr-3 h-8 w-8 text-accent" /> Volunteer Experience
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-8 pt-2">
+      <CardContent className="pt-6 px-6 space-y-6"> {/* Adjust spacing */}
+        {/* Add a descriptive paragraph if needed */}
+        {/* <p className="text-muted-foreground mb-8">Highlight your contributions and impact through volunteer work.</p> */}
+
+        {/* Map over volunteer entries */}
         {volunteerExperienceData.map((volunteer, index) => (
           <div
             key={index}
@@ -71,17 +76,31 @@ const VolunteerExperience: React.FC = () => {
               <div className="flex-grow">
                 <h3 className="text-xl font-semibold text-foreground">{volunteer.role}</h3>
                 <p className="text-md text-muted-foreground">{volunteer.company}</p>
-                <p className="text-sm text-muted-foreground">{volunteer.duration}</p>
-                {volunteer.category && <p className="text-sm text-muted-foreground italic mt-1">Category: {volunteer.category}</p>}
+                <p className="text-sm text-muted-foreground mt-1">{volunteer.duration}</p> {/* Add margin-top */}
               </div>
             </div>
+
+            {/* Display category as a badge */}
+            {volunteer.category && (
+              <div className="mt-3"> {/* Adjust margin-top */}
+                 <Badge variant="outline" className="bg-muted/50">
+                   {volunteer.category}
+                 </Badge>
+              </div>
+            )}
+
+            {/* Display description as a list */}
             {volunteer.description && (
-              <div className="mt-3 text-md text-foreground/90">
-                {volunteer.description}
+              <div className="mt-4 text-md text-foreground/90"> {/* Adjust margin-top */}
+                 <ul className="list-disc list-inside space-y-2"> {/* Use unordered list for description */}
+                   {/* Split description by newlines or specific delimiters if necessary */}
+                   {/* For now, treating the entire description as one item */}
+                   <li>{volunteer.description}</li>
+                 </ul>
               </div>
             )}
           </div>
-        ))}
+        ))} {/* Close map function */}
       </CardContent>
     </Card>
   );

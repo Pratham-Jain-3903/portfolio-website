@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Briefcase, Calendar, MapPin, ExternalLink } from 'lucide-react';
+import { Briefcase, Calendar, MapPin } from 'lucide-react';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
@@ -28,8 +28,13 @@ const experienceData: ExperienceEntry[] = [
     duration: 'Feb 2025 - Present',
     location: 'Gurugram, Haryana, India',
     logoUrl: '/logos/luminous.png', // Replace with actual logo path
-    responsibilities: [],
-    skills: ['Data Engineering', 'ETL', 'Data Pipelines']
+    responsibilities: [
+      'Built a Cache Augmented Generation (CAG) chatbot backend on Azure using FastAPI, Gunicorn, and Nginx. (Demo)',
+      'Engineered offline-first Local Architecture with CosmosDB, reducing query latency by 78% for 10K+ users.',
+      'Developed dynamic agents using CrewAI and Azure Functions, cutting hallucinations by 18.6% and inference cost by 30%.',
+      'Integrated Azure Bedrock agents to minimize latency by 88%, improving customer satisfaction score by 7%. ',
+    ],
+    skills: ['Azure', 'FastAPI', 'Gunicorn', 'Nginx', 'CosmosDB', 'CrewAI', 'Azure Functions', 'Azure Bedrock', 'AI/ML', 'Data Engineering', 'Chatbots'],
   },
   {
     role: 'Research Assistant',
@@ -55,7 +60,7 @@ const experienceData: ExperienceEntry[] = [
     location: 'Raichur, Karnataka, India',
     projectTitle: 'Multimodal AI-Powered Breast Cancer Screening System',
     projectDuration: 'Jan 2024 – Nov 2024',
-    logoUrl: '/logos/bosch-medical.png', // Replace with actual logo path
+    logoUrl: '/logos/bosch.png', // Replace with actual logo path
     responsibilities: [
       'Spearheaded a pioneering research initiative to develop a world-first inter-disciplinary multimodal screening system, achieving an 80% reduction in second screening time',
       'Integrated and tested mammogram and pathology-based approaches for accurate diagnoses, achieving 96.8% accuracy (p<0.05)',
@@ -64,61 +69,7 @@ const experienceData: ExperienceEntry[] = [
     skills: ['Healthcare AI', 'Medical Imaging', 'Machine Learning', 'Research'],
     parentCompany: 'Bosch Global Software Technologies'
   },
-  {
-    role: 'Freelance Software Engineer',
-    company: 'NeoCFO',
-    duration: 'Jan 2025 - Mar 2025',
-    location: 'Gurugram, Haryana, India',
-    logoUrl: '/logos/neocfo.png', // Replace with actual logo path
-    responsibilities: [
-      'Utilized agents to fetch data from business tools (e.g., Salesforce, HubSpot) and user data in S3 buckets, enabling dynamic query analysis for revenue forecasting and marketing budget optimization',
-      'Deployed APIs using PM2 on serverless EC2 instances and Lambda to process user queries sourced from CRM systems',
-      'Trained prediction models on acquired data asynchronously for reasoning models, enhancing backend intelligence'
-    ],
-    skills: ['AWS', 'Lambda', 'EC2', 'CRM Integration', 'API Development']
-  },
-  {
-    role: 'Database Developer',
-    company: 'RIMS',
-    duration: 'Aug 2024 - Sep 2024',
-    location: 'Raichur, Karnataka, India',
-    logoUrl: '/logos/rims.png', // Replace with actual logo path
-    responsibilities: [
-      'Managed hybrid cloud storage for 2,000 patients annually using Amazon S3 and EC2',
-      'Transitioned from costly physical storage to a digital system with MongoDB and Streamlit',
-      'Developed a user-friendly interface to streamline access to medical records and research materials',
-      'Improved data management, boosting the department\'s research capabilities',
-      'Collaborated with medical professionals to ensure the solution met departmental needs and industry standards'
-    ],
-    skills: ['MongoDB', 'AWS S3', 'EC2', 'Streamlit', 'Healthcare IT']
-  },
-  {
-    role: 'Business Intelligence Growth Analyst',
-    company: 'YourGuide',
-    duration: 'Aug 2022 - Oct 2022',
-    location: 'Hyderabad, Telangana, India',
-    logoUrl: '/logos/yourguide.png', // Replace with actual logo path
-    responsibilities: [
-      'Leveraged business intelligence tools to optimize intern onboarding processes, reducing HR time by 50%',
-      'Developed data-driven pitch decks, combining market research and HR analytics, which were instrumental in securing seed funding',
-      'Analyzed internal communication patterns and enhanced strategies to improve team collaboration and proactive problem-solving'
-    ],
-    skills: ['Business Intelligence', 'Data Analysis', 'HR Analytics'],
-    parentCompany: 'YourGuide'
-  },
-  {
-    role: 'Market Research Analyst',
-    company: 'YourGuide',
-    duration: 'Jan 2022 - Aug 2022',
-    location: 'Hyderabad, Telangana, India',
-    logoUrl: '/logos/yourguide.png', // Replace with actual logo path
-    responsibilities: [
-      'Conducted market research and survey design, impacting over 500 users',
-      'Provided actionable insights from detailed analysis, guiding business decisions'
-    ],
-    skills: ['Market Research', 'Data Analysis', 'Survey Design'],
-    parentCompany: 'YourGuide'
-  }
+  
 ];
 
 // Group experiences by company to show company timeline
@@ -126,7 +77,7 @@ const groupExperiencesByCompany = (experiences: ExperienceEntry[]) => {
   const companies = new Map<string, ExperienceEntry[]>();
   
   experiences.forEach(exp => {
-    const companyName = exp.parentCompany || exp.company;
+    const companyName = exp.parentCompany || exp.company; // Group by parentCompany or company if no parent
     if (!companies.has(companyName)) {
       companies.set(companyName, []);
     }
@@ -193,7 +144,6 @@ const Experience: React.FC = () => {
                 )}
               >
                 {/* Company header with total duration */}
-                {companyExperiences.length > 1 && (
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6">
                     <div className="flex items-center">
                       {companyExperiences[0].logoUrl && (
@@ -218,7 +168,6 @@ const Experience: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                )}
                 
                 {/* Company experiences timeline */}
                 <div className="space-y-6 pl-0 sm:pl-6 relative">
@@ -332,8 +281,8 @@ function calculateTotalDuration(experiences: ExperienceEntry[]): string {
   }
   
   // Get earliest start and latest end dates
-  let earliestStart: Date | null = null;
-  let latestEnd: Date | null = null;
+  let earliestStart: Date | undefined = undefined;
+  let latestEnd: Date | undefined = undefined;
   
   experiences.forEach(exp => {
     const [start, end] = exp.duration.split(' - ');
@@ -367,8 +316,8 @@ function calculateTotalDuration(experiences: ExperienceEntry[]): string {
     if (months > 0) {
       duration += `${years > 0 ? ' ' : ''}${months} month${months > 1 ? 's' : ''}`;
     }
-    
-    return `${startStr} - ${endStr === 'Present' ? 'Present' : endStr} · ${duration}`;
+
+ return `${startStr} - ${latestEnd.toDateString() === new Date().toDateString() ? 'Present' : endStr} · ${duration}`;
   }
   
   return '';

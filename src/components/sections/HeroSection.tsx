@@ -6,10 +6,10 @@ import Image from 'next/image';
 import Navbar from '@/components/common/Navbar';
 import { ChevronDownCircle } from 'lucide-react'; 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import FeatureGrid from '@/components/sections/FeatureGrid';
-import ContactInfo from '@/components/sections/ContactInfo';
-import Skills from '@/components/sections/Skills';
-import Education from '@/components/sections/Education';
+// import FeatureGrid from '@/components/sections/FeatureGrid';
+// import ContactInfo from '@/components/sections/ContactInfo';
+// import Skills from '@/components/sections/Skills';
+// import Education from '@/components/sections/Education';
 
 export default function Home() {
   const scrollToContact = () => {
@@ -75,10 +75,10 @@ export default function Home() {
 
         {/* Removed the auto-scroll down button div based on user request */}
 
-        <FeatureGrid />
+        {/* <FeatureGrid />
         <Skills />
         <Education />
-        <ContactInfo />
+        <ContactInfo /> */}
       </div>
   );
 }

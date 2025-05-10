@@ -5,11 +5,11 @@ import { Github, Linkedin, Mail, MapPin, Phone, User } from 'lucide-react';
 import Link from 'next/link';
 
 const contactDetails = [
-  { icon: Phone, label: 'Phone', value: '+91-9876543210', href: 'tel:+919876543210' },
+  { icon: Phone, label: 'Phone', value: '+91-9301990411', href: 'tel:+919301990411' },
   { icon: Mail, label: 'Email', value: 'Prathamjain3903@gmail.com', href: 'mailto:Prathamjain3903@gmail.com' },
-  { icon: MapPin, label: 'Location', value: 'Bangalore, India' },
-  { icon: Github, label: 'GitHub', value: 'github.com/prathamjain', href: 'https://github.com/prathamjain', target: '_blank' },
-  { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/prathamjain', href: 'https://linkedin.com/in/prathamjain', target: '_blank' },
+  { icon: MapPin, label: 'Location', value: 'Gurugram, India' },
+  { icon: Github, label: 'GitHub', value: 'Pratham-Jain-3903', href: 'https://github.com/Pratham-Jain-3903', target: '_blank' },
+  { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/pratham-jain-56682620a/', href: 'https://www.linkedin.com/in/pratham-jain-56682620a/', target: '_blank' },
 ];
 
 const ContactInfo: React.FC = () => {
