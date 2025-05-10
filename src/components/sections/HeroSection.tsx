@@ -4,8 +4,8 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/common/Navbar';
-import { ChevronDownCircle } from 'lucide-react'; // ArrowDownCircle removed, ChevronDownCircle kept
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'; // Added Tooltip imports
+import { ChevronDownCircle } from 'lucide-react'; 
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'; 
 
 export default function HeroSection() {
   const scrollToContact = () => {
@@ -64,15 +64,7 @@ export default function HeroSection() {
           </Tooltip>
         </div>
 
-        <div className="absolute bottom-10 z-10 text-center w-full">
-          <button
-              onClick={scrollToContact}
-              aria-label="Scroll to next section"
-              className="p-2 text-foreground/70 hover:text-accent transition-colors duration-300 animate-pulse-subtle"
-          >
-              <ChevronDownCircle size={48} strokeWidth={1.5} />
-          </button>
-        </div>
+        {/* Removed the auto-scroll down button div based on user request */}
       </section>
     </TooltipProvider>
   );
