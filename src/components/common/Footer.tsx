@@ -79,7 +79,7 @@ export default function Footer() {
             <a
               href={`mailto:${contactEmail}?subject=Project Inquiry from DevSite`}
               className="inline-block px-6 py-3 rounded-lg font-semibold
-                         bg-accent/20 text-accent-foreground hover:bg-accent/30 border-2 border-accent/40 backdrop-blur-md
+                         bg-accent/20 text-primary-foreground hover:bg-accent/30 border-2 border-accent/40 backdrop-blur-md
                          transition-all duration-300 ease-in-out transform hover:scale-105"
             >
               Send an Email

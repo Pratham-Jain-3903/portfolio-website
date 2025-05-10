@@ -16,41 +16,41 @@
     --popover: 0 0% 100%;
     --popover-foreground: 20 14.3% 4.1%;
 
-    --primary: 125 60% 45%; /* Vibrant Green for light theme */
-    --primary-foreground: 0 0% 100%; /* White text for Green */
+    --primary: 180 100% 25%; /* Teal #008080 */
+    --primary-foreground: 0 0% 100%; /* White text for Teal */
 
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 20 14.3% 4.1%;
+    --secondary: 0 0% 96.1%; /* #F5F5F5 Light Grayish */
+    --secondary-foreground: 20 14.3% 4.1%; /* Dark text for secondary */
 
     --muted: 0 0% 90%;
     --muted-foreground: 0 0% 45.1%;
 
-    --accent: 120 100% 50%; /* Neon Green for light theme */
-    --accent-foreground: 20 14.3% 4.1%; /* Dark text for Neon Green */
+    --accent: 16 100% 50%; /* Coral #FF7F50 */
+    --accent-foreground: 0 0% 100%; /* White text for Coral */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 85%;
     --input: 0 0% 85%;
-    --ring: 125 60% 45%; /* Vibrant Green for ring */
+    --ring: 180 100% 25%; /* Teal for ring */
 
     --radius: 0.5rem;
 
-    --chart-1: 125 60% 45%;
-    --chart-2: 125 50% 35%;
-    --chart-3: 125 70% 55%;
+    --chart-1: 180 100% 25%; /* Teal */
+    --chart-2: 180 80% 35%;  /* Lighter Teal */
+    --chart-3: 16 100% 50%;  /* Coral */
     --chart-4: 210 15% 35%;
     --chart-5: 210 15% 55%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-primary: 180 100% 25%; /* Teal */
+    --sidebar-primary-foreground: 0 0% 100%; /* White */
+    --sidebar-accent: 0 0% 92%; /* Lighter gray for sidebar accent */
+    --sidebar-accent-foreground: 20 14.3% 4.1%; /* Dark text */
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 180 100% 25%; /* Teal */
   }
 
   .dark {
@@ -63,8 +63,8 @@
     --popover: 220 13% 8%; /* Dark Popover */
     --popover-foreground: 210 17% 86%; /* Light text on popover */
 
-    --primary: 125 60% 45%;   /* Vibrant Green (main theme green) */
-    --primary-foreground: 125 60% 95%; /* Very Light Green/White text for primary elements */
+    --primary: 150 100% 35%;   /* Neon Green - adjusted for darker primary, still vibrant */
+    --primary-foreground: 0 0% 100%; /* White text for Neon Green primary */
 
     --secondary: 220 13% 18%; /* Darker Gray for secondary elements */
     --secondary-foreground: 210 17% 75%; /* Lighter gray text */
@@ -72,32 +72,32 @@
     --muted: 220 13% 22%; /* Muted background elements */
     --muted-foreground: 210 17% 55%; /* Muted text */
 
-    --accent: 120 100% 50%;    /* Pure Neon Green (e.g., #00FF00) */
-    --accent-foreground: 120 100% 5%; /* Very Dark/Black text for neon green accents */
+    --accent: 150 100% 45%;    /* Neon Green (e.g., #00FF00 like) - this is the main accent */
+    --accent-foreground: 0 0% 100%; /* White text for neon green accents */
 
     --destructive: 0 70% 50%; /* Adjusted destructive for dark theme */
     --destructive-foreground: 0 0% 98%;
 
     --border: 220 13% 20%; /* Subtle borders */
     --input: 220 13% 15%; /* Input background */
-    --ring: 125 60% 45%;      /* Primary Green for ring */
+    --ring: 150 100% 45%;      /* Neon Green for ring */
 
-    /* Chart colors adjusted for dark theme with green accent */
-    --chart-1: 125 60% 45%; /* Primary Green */
-    --chart-2: 125 50% 35%; /* Darker Shade of Primary Green */
-    --chart-3: 125 70% 55%; /* Lighter Shade of Primary Green */
+    /* Chart colors adjusted for dark theme with neon green accent */
+    --chart-1: 150 100% 45%; /* Accent Neon Green */
+    --chart-2: 150 80% 35%; /* Darker Shade of Neon Green */
+    --chart-3: 150 100% 55%; /* Lighter Shade of Neon Green */
     --chart-4: 210 15% 65%; /* Neutral Light Gray-Blue */
     --chart-5: 210 15% 45%; /* Neutral Medium Gray-Blue */
     
     /* Sidebar colors to match the new theme */
     --sidebar-background: 220 13% 8%; /* Darker than main background for slight separation */
     --sidebar-foreground: 210 17% 80%; /* Slightly less bright white */
-    --sidebar-primary: 125 60% 45%; /* Primary green for active/primary sidebar items */
-    --sidebar-primary-foreground: 125 60% 95%; /* Light text on primary green */
+    --sidebar-primary: 150 100% 45%; /* Neon Green for active/primary sidebar items */
+    --sidebar-primary-foreground: 0 0% 100%; /* White text on primary green */
     --sidebar-accent: 220 13% 15%; /* Hover/accent state for sidebar items */
     --sidebar-accent-foreground: 210 17% 90%; /* Text color for hover/accent */
     --sidebar-border: 220 13% 18%;
-    --sidebar-ring: 125 60% 45%; /* Primary Green */
+    --sidebar-ring: 150 100% 45%; /* Neon Green */
   }
 }
 
