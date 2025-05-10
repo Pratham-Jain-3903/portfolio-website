@@ -29,7 +29,10 @@ const Education: React.FC = () => {
       </CardHeader>
       <CardContent className="space-y-6 pt-2">
         {educationData.map((edu, index) => (
-          <div key={index} className="p-4 border border-border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-card-foreground/5">
+          <div 
+            key={index} 
+            className="p-4 border border-border/20 bg-background/10 backdrop-blur-sm rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+          >
             <h3 className="text-xl font-semibold text-foreground">{edu.degree}</h3>
             <p className="text-md text-muted-foreground">{edu.institution}</p>
             {edu.year && <p className="text-sm text-muted-foreground">{edu.year}</p>}

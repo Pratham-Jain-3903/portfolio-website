@@ -47,7 +47,10 @@ const Experience: React.FC = () => {
       </CardHeader>
       <CardContent className="space-y-8 pt-2">
         {experienceData.map((exp, index) => (
-          <div key={index} className="p-5 border border-border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-card-foreground/5">
+          <div 
+            key={index} 
+            className="p-5 border border-border/20 bg-background/10 backdrop-blur-sm rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+          >
             <div className="flex items-start sm:items-center mb-3 flex-col sm:flex-row">
               {exp.logoUrl && (
                 <Image 
