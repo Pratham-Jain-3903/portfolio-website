@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Github, Linkedin, Mail, MapPin, Phone, User } from 'lucide-react';
@@ -5,7 +6,7 @@ import Link from 'next/link';
 
 const contactDetails = [
   { icon: Phone, label: 'Phone', value: '+91-9876543210', href: 'tel:+919876543210' },
-  { icon: Mail, label: 'Email', value: 'pratham.jain@example.com', href: 'mailto:pratham.jain@example.com' },
+  { icon: Mail, label: 'Email', value: 'Prathamjain3903@gmail.com', href: 'mailto:Prathamjain3903@gmail.com' },
   { icon: MapPin, label: 'Location', value: 'Bangalore, India' },
   { icon: Github, label: 'GitHub', value: 'github.com/prathamjain', href: 'https://github.com/prathamjain', target: '_blank' },
   { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/prathamjain', href: 'https://linkedin.com/in/prathamjain', target: '_blank' },
