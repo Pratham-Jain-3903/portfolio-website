@@ -20,7 +20,7 @@ const freelanceExperienceData: FreelanceExperienceEntry[] = [
     company: 'NeoCFO',
     duration: 'Jan 2025 - Mar 2025',
     location: 'Gurugram, Haryana, India',
-    logoUrl: '/logos/neocfo.png', // Replace with actual logo path
+    logoUrl: 'https://neocfo.io/logo_color.webp', // Replace with actual logo path
     responsibilities: [
       'Utilized agents to fetch data from business tools (e.g., Salesforce, HubSpot) and user data in S3 buckets, enabling dynamic query analysis for revenue forecasting and marketing budget optimization',
       'Deployed APIs using PM2 on serverless EC2 instances and Lambda to process user queries sourced from CRM systems',
@@ -33,7 +33,7 @@ const freelanceExperienceData: FreelanceExperienceEntry[] = [
     company: 'YourGuide',
     duration: 'Aug 2022 - Oct 2022',
     location: 'Hyderabad, Telangana, India',
-    logoUrl: '/logos/yourguide.png', // Replace with actual logo path
+    logoUrl: 'https://media.licdn.com/dms/image/v2/D4D0BAQH1DtSTwuBLfw/company-logo_200_200/company-logo_200_200/0/1691164381194/yourguide_india_logo?e=1752105600&v=beta&t=3-y0q542xlkKddGR049V44kUV0B1tKrcj5KO3WwxKZA', // Replace with actual logo path
     responsibilities: [
       'Leveraged business intelligence tools to optimize intern onboarding processes, reducing HR time by 50%',
       'Developed data-driven pitch decks, combining market research and HR analytics, which were instrumental in securing seed funding',
@@ -46,7 +46,7 @@ const freelanceExperienceData: FreelanceExperienceEntry[] = [
     company: 'YourGuide',
     duration: 'Jan 2022 - Aug 2022',
     location: 'Hyderabad, Telangana, India',
-    logoUrl: '/logos/yourguide.png', // Replace with actual logo path
+    logoUrl: 'https://media.licdn.com/dms/image/v2/D4D0BAQH1DtSTwuBLfw/company-logo_200_200/company-logo_200_200/0/1691164381194/yourguide_india_logo?e=1752105600&v=beta&t=3-y0q542xlkKddGR049V44kUV0B1tKrcj5KO3WwxKZA', // Replace with actual logo path
     responsibilities: [
       'Conducted market research and survey design, impacting over 500 users',
       'Provided actionable insights from detailed analysis, guiding business decisions'
@@ -74,9 +74,7 @@ const FreelanceExperience: React.FC = () => {
               {experience.logoUrl && (
                 <div className="relative mr-0 sm:mr-4 mb-2 sm:mb-0 h-12 w-12 rounded-full overflow-hidden border-2 border-muted bg-background flex items-center justify-center">
                   <Image
-                    src={experience.logoUrl.startsWith('/')
-                      ? experience.logoUrl
-                      : `https://picsum.photos/seed/${experience.company.toLowerCase().replace(/\s+/g, '-')}/48/48`}
+ src={experience.logoUrl}
                     alt={`${experience.company} logo`}
                     width={48}
                     height={48}

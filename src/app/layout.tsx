@@ -1,17 +1,17 @@
 import type { Metadata, Viewport } from 'next';
-import { Dosis, Noto_Sans } from 'next/font/google';
+import {Noto_Sans } from 'next/font/google';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/components/common/theme-provider';
 
-// Load fonts with display strategy for better performance
-const dosis = Dosis({
-  variable: '--font-dosis',
-  weight: ['400', '500', '600', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-});
+// // Load fonts with display strategy for better performance
+// const dosis = Doto({
+//   variable: '--font-dosis',
+//   weight: ['800'],
+//   subsets: ['latin'],
+//   display: 'swap',
+// });
 
 const notoSans = Noto_Sans({
   variable: '--font-noto-sans',
@@ -66,8 +66,7 @@ export default function RootLayout({
       lang="en" 
       suppressHydrationWarning 
       className={cn(
-        'scroll-smooth',
-        dosis.variable, 
+        'scroll-smooth', 
         notoSans.variable
       )}
     >

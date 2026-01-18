@@ -27,7 +27,7 @@ const experienceData: ExperienceEntry[] = [
     company: 'Luminous Power Technologies (P) Ltd',
     duration: 'Feb 2025 - Present',
     location: 'Gurugram, Haryana, India',
-    logoUrl: '/logos/luminous.png', // Replace with actual logo path
+    logoUrl: 'https://cdn.freelogovectors.net/wp-content/uploads/2023/12/luminous-logo-freelogovectors.net_-640x400.png', // Replace with actual logo path
     responsibilities: [
       'Built a Cache Augmented Generation (CAG) chatbot backend on Azure using FastAPI, Gunicorn, and Nginx. (Demo)',
       'Engineered offline-first Local Architecture with CosmosDB, reducing query latency by 78% for 10K+ users.',
@@ -39,11 +39,11 @@ const experienceData: ExperienceEntry[] = [
   {
     role: 'Research Assistant',
     company: 'Bosch Global Software Technologies',
-    duration: 'Mar 2024 - Present',
+    duration: 'Mar 2024 - Feb 2025',
     location: 'Raichur, Karnataka, India',
     projectTitle: 'AI-Driven HVAC Efficiency Optimization',
     projectDuration: 'Mar 2024 – Nov 2024',
-    logoUrl: '/logos/bosch.png', // Replace with actual logo path
+    logoUrl: 'https://i.pinimg.com/736x/c4/30/5c/c4305cf1a09a7bcf2d7dd64e67da411c.jpg', // Replace with actual logo path
     responsibilities: [
       'Designed and implemented a real-time data pipeline for AI models, focusing on energy, fuel, and electricity consumption in HVAC systems',
       'Conducted data wrangling and warehousing of IoT signals to support AI-driven insights',
@@ -60,7 +60,7 @@ const experienceData: ExperienceEntry[] = [
     location: 'Raichur, Karnataka, India',
     projectTitle: 'Multimodal AI-Powered Breast Cancer Screening System',
     projectDuration: 'Jan 2024 – Nov 2024',
-    logoUrl: '/logos/bosch.png', // Replace with actual logo path
+    logoUrl: 'https://i.pinimg.com/736x/c4/30/5c/c4305cf1a09a7bcf2d7dd64e67da411c.jpg', // Replace with actual logo path
     responsibilities: [
       'Spearheaded a pioneering research initiative to develop a world-first inter-disciplinary multimodal screening system, achieving an 80% reduction in second screening time',
       'Integrated and tested mammogram and pathology-based approaches for accurate diagnoses, achieving 96.8% accuracy (p<0.05)',
@@ -149,9 +149,7 @@ const Experience: React.FC = () => {
                       {companyExperiences[0].logoUrl && (
                         <div className="relative mr-4 h-16 w-16 rounded-lg overflow-hidden border-2 border-muted bg-background flex items-center justify-center">
                           <Image
-                            src={companyExperiences[0].logoUrl.startsWith('/') 
-                              ? companyExperiences[0].logoUrl 
-                              : `https://picsum.photos/seed/${company.toLowerCase().replace(/\s+/g, '-')}/64/64`}
+                            src={companyExperiences[0].logoUrl}
                             alt={`${company} logo`}
                             width={64}
                             height={64}
@@ -207,10 +205,7 @@ const Experience: React.FC = () => {
                           {companyExperiences.length === 1 && exp.logoUrl && (
                             <div className="sm:ml-auto hidden sm:block">
                               <div className="relative h-14 w-14 rounded overflow-hidden border border-muted bg-background flex items-center justify-center">
-                                <Image
-                                  src={exp.logoUrl.startsWith('/') 
-                                    ? exp.logoUrl 
-                                    : `https://picsum.photos/seed/${exp.company.toLowerCase().replace(/\s+/g, '-')}/56/56`}
+                                <Image src={exp.logoUrl}
                                   alt={`${exp.company} logo`}
                                   width={56}
                                   height={56}

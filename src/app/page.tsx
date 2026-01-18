@@ -11,11 +11,12 @@ import Certifications from '@/components/sections/Certifications';
 import Recommendations from '@/components/sections/Recommendations';
 import VolunteerExperience from '@/components/sections/VolunteerExperience';
 import Education from '@/components/sections/Education';
-import GitHubCalendar from '@/components/sections/GitHubCalendar'; // Import GitHubCalendar
+// import GitHubCalendar from '@/components/sections/GitHubCalendar'; // Import GitHubCalendar
 import LinkedInPostCarousel from '@/components/sections/LinkedInPostCarousel'; // Import LinkedInPostCarousel
 import ScrollToTopButton from '@/components/common/ScrollToTopButton';
 import Footer from '@/components/common/Footer';
 import { Skeleton } from '@/components/ui/skeleton';
+import Navbar from '@/components/common/Navbar'; // Import the Navbar component
 
 // Loading skeletons for better UX during component loading
 const SectionSkeleton = () => (
@@ -30,16 +31,16 @@ const SectionSkeleton = () => (
 );
 
 // Section wrapper component with proper scroll margins
-const Section = ({ 
-  id, 
-  children, 
-  className = "" 
-}: { 
-  id: string; 
-  children: React.ReactNode; 
-  className?: string 
+const Section = ({
+  id,
+  children,
+  className = ""
+}: {
+  id: string;
+  children: React.ReactNode;
+  className?: string
 }) => (
-  <section 
+  <section
     id={id}
     className={`scroll-mt-16 h-full ${className}`}
   >
@@ -54,13 +55,16 @@ const Section = ({
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
+      {/* Add the Navbar component here */}
+      <Navbar />
+
       {/* Hero section takes full width */}
       <HeroSection />
 
       {/* Main content with Truly Gapless Bento Grid Layout */}
       <main className="flex-grow w-full bg-background">
         <div className="w-full px-4 py-1 relative">
-          {/* Row 1: Objective (Adjusted Width) + Contact Info (Adjusted Width) */}git 
+          {/* Row 1: Objective (Adjusted Width) + Contact Info (Adjusted Width) */}
           <div className="flex flex-col md:flex-row w-full pb-1">
             {/* Introduction/Objective Section with hover effect */}
             <div className="w-full md:w-2/3 md:pr-1 pb-1 p-4 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"> {/* Already had padding/hover */}
@@ -81,7 +85,7 @@ export default function Home() {
           {/* Truly Gapless Bento Grid using flex and absolute positioning */}
           <div className="relative w-full">
             {/* Row 1: Objective already placed above as full width */}
-            
+
             {/* Row 2: Experience (2/3) + Skills (1/3) */}
             <div className="flex flex-col md:flex-row w-full">
               <div className="w-full md:w-2/3 md:pr-1 pb-1 p-4 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"> {/* Already had padding/hover */}
@@ -145,11 +149,12 @@ export default function Home() {
               <div className="w-full md:w-2/5 p-4 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"> {/* Added padding and hover effect */}
                 <Section id="github-calendar"> {/* Added id */}
                   <h2 className="text-2xl font-bold text-foreground mb-4">GitHub Contributions</h2> {/* Added Heading */}
+                  <h3 className="text-2xl font-medium text-foreground mb-4">coming soon</h3> {/* Added Heading */}
                 </Section>
               </div>
             </div>
           </div>
-          
+
           {/* New Row for LinkedIn Post Carousel */}
           <div className="w-full px-4 py-1 relative"> {/* Added padding and relative positioning */}
             <Section id="linkedin-posts"> {/* Added ID for navigation */}
@@ -170,5 +175,3 @@ export default function Home() {
     </div>
   );
 }
-
-

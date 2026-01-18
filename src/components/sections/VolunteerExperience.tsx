@@ -20,27 +20,27 @@ const volunteerExperienceData: VolunteerExperienceEntry[] = [
     duration: 'Aug 2024 - Present 10 months',
     category: 'Science and Technology',
     description: 'Identified and Addressed Key Challenges: Discovered that the Pathology Department at RIMS relied on physical storage for medical records, leading to difficulties in searching and accessing relevant slides due to the high cost and inefficiency of physical archives. Developed Digital Solution: Designed and implemented a comprehensive digital archive system using MongoDB and Streamlit. This solution was aimed at transitioning the pathology department from expensive physical storage to a…Show more',
-    logoUrl: 'https://picsum.photos/seed/rimsvolunteer/40/40', // Placeholder logo
+    logoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6i3ntEYZoC5TD0DDAUM43iIKY0SbKU91ZJA&s', // Placeholder logo
   },
   {
     role: 'Student Volunteer',
     company: 'National Service Scheme',
     duration: 'Dec 2021 - Present 3 years 6 months',
-    logoUrl: 'https://picsum.photos/seed/nssvolunteer/40/40', // Placeholder logo
+    logoUrl: 'https://students.iiitr.ac.in/assets/images/club/nss-inverted.png', // Placeholder logo
   },
   {
     role: 'Head of Public Relations',
     company: 'Indian Institute of Information Technology, Raichur',
     duration: 'Sep 2022 - Present 2 years 9 months',
     category: 'Education',
-    logoUrl: 'https://picsum.photos/seed/iiitrvolunteer/40/40', // Placeholder logo
+    logoUrl: 'https://students.iiitr.ac.in/assets/images/logo/logo_white.png', // Placeholder logo
   },
   {
     role: 'Student Mentor',
     company: 'E-Cell, IIIT Raichur',
     duration: 'Nov 2024 - Present 7 months',
     category: 'Economic Empowerment',
-    logoUrl: 'https://picsum.photos/seed/ecellvolunteer/40/40', // Placeholder logo
+    logoUrl: 'https://students.iiitr.ac.in/assets/images/club/E_cell_logo.jpg', // Placeholder logo
   },
 ];
 
