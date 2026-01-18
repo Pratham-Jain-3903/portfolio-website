@@ -8,13 +8,11 @@ import Footer from '@/components/common/Footer';
 interface Session {
   sessionId: string;
   timestamp: string;
-  [key: string]: unknown;
 }
 
 interface Section {
   name: string;
   views: number;
-  [key: string]: unknown;
 }
 
 interface DashboardData {
@@ -120,7 +118,7 @@ export default function AnalyticsDashboard() {
         </div>
 
         {dashboardData?.data.message && (
-          <Card className="border-blue-500 bg-blue-50 dark:bg-blue-950">
+          <Card className="border-primary/50 bg-primary/5 dark:bg-primary/10">
             <CardContent className="pt-6">
               <p className="text-sm">{dashboardData.data.message}</p>
             </CardContent>

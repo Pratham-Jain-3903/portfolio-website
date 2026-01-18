@@ -39,7 +39,8 @@ export async function GET() {
 
     return NextResponse.json(dashboardData, { status: 200 });
   } catch (error) {
-    console.error('[Analytics] Error fetching dashboard data:', error);
+    // Log error details server-side only (not exposed to client)
+    console.error('[Analytics] Error fetching dashboard data:', error instanceof Error ? error.message : 'Unknown error');
     return NextResponse.json(
       { 
         success: false, 
