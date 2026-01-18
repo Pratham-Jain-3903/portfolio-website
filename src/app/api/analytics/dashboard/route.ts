@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     // In a production environment, you would:
     // 1. Authenticate the request (check for admin/auth token)
@@ -44,7 +44,6 @@ export async function GET(request: NextRequest) {
       { 
         success: false, 
         error: 'Failed to fetch dashboard data',
-        message: String(error),
       },
       { status: 500 }
     );

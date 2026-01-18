@@ -5,6 +5,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import Navbar from '@/components/common/Navbar';
 import Footer from '@/components/common/Footer';
 
+interface Session {
+  sessionId: string;
+  timestamp: string;
+  [key: string]: unknown;
+}
+
+interface Section {
+  name: string;
+  views: number;
+  [key: string]: unknown;
+}
+
 interface DashboardData {
   success: boolean;
   message: string;
@@ -18,8 +30,8 @@ interface DashboardData {
       averageTimeOnSite: number;
       bounceRate: number;
     };
-    recentSessions: any[];
-    topSections: any[];
+    recentSessions: Session[];
+    topSections: Section[];
     deviceBreakdown: {
       mobile: number;
       tablet: number;
