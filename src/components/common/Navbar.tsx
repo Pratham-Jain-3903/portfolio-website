@@ -6,6 +6,9 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
 import ThemeToggle from '@/components/common/ThemeToggle';
+import { Download } from 'lucide-react';
+import { useTrackClick } from '@/hooks/use-track-click';
+import ResumeDownloadDialog from '@/components/common/ResumeDownloadDialog';
 
 const navLinks = [
   // { name: 'Objective', href: '#objective' },
@@ -16,6 +19,11 @@ const navLinks = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
+  const resumeDownloadTracker = useTrackClick('resume-download-button', { 
+    action: 'download_resume',
+    destination: 'google_drive'
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +32,55 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleDownload = async (formData?: { name: string; company: string; email: string }) => {
+    // Track the download
+    resumeDownloadTracker.onClick();
+    
+    const sessionId = typeof window !== 'undefined' ? sessionStorage.getItem('analyticsSessionId') || '' : '';
+    
+    // If form data is provided, send to resume_download_form endpoint
+    if (formData) {
+      try {
+        await fetch('/api/analytics/resume_download_form', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            sessionId,
+            timestamp: new Date().toISOString(),
+            source: 'navbar',
+            ...formData,
+          }),
+        });
+      } catch (e) {
+        // Log error for monitoring - analytics failures should not block user experience
+        console.error('Failed to track form submission:', e);
+        // In production, consider sending to error monitoring service (e.g., Sentry)
+      }
+    }
+    
+    // Always track to the resume_downloads endpoint for dedicated tracking
+    try {
+      await fetch('/api/analytics/resume_downloads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sessionId,
+          timestamp: new Date().toISOString(),
+          source: 'navbar',
+          hasFormData: !!formData,
+        }),
+      });
+    } catch (e) {
+      // Log error for monitoring - analytics failures should not block user experience
+      console.error('Failed to track download:', e);
+      // In production, consider sending to error monitoring service (e.g., Sentry)
+    }
+    
+    // Open the resume in a new tab
+    // Note: Resume URL is specified in the issue requirements
+    window.open('https://drive.google.com/file/d/1aNzxysdndIRi2BPtyiqrmuF5iYeAHStH/view?usp=sharing', '_blank');
+  };
 
   return (
     <header
@@ -45,11 +102,27 @@ export default function Navbar() {
                 </Button>
               ))}
             </nav>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setShowDialog(true)}
+              aria-label="Download Resume"
+              className="relative w-10 h-10 rounded-full border border-border/60 hover:border-accent/70 hover:bg-accent/10"
+              title="Download Resume"
+            >
+              <Download className="h-5 w-5" />
+            </Button>
             <ThemeToggle />
           </div>
           {/* Mobile menu button can be added here if needed */}
         </div>
       </div>
+      
+      <ResumeDownloadDialog 
+        open={showDialog}
+        onOpenChange={setShowDialog}
+        onDownload={handleDownload}
+      />
     </header>
   );
 }
