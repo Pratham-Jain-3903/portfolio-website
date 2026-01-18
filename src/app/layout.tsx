@@ -3,7 +3,7 @@ import { Dosis, Noto_Sans } from 'next/font/google';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Analytics } from '@/components/analytics';
+import { Analytics } from '@/components/common/analytics';
 
 // Optimize font loading
 const dosis = Dosis({

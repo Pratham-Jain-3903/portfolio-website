@@ -3,6 +3,17 @@
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
+// Add type declaration for gtag
+declare global {
+  interface Window {
+    gtag: (
+      command: string, 
+      targetId: string, 
+      params?: Record<string, any>
+    ) => void;
+  }
+}
+
 export function Analytics() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
