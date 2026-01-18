@@ -14,7 +14,7 @@ const quickLinks = [
 
 const socialLinks = [
   { name: 'GitHub', href: 'https://github.com/Pratham-Jain-3903', icon: Github, value: 'github.com/Pratham-Jain-3903' },
-  { name: 'LinkedIn', href: 'https://linkedin.com/in/prathamjain', icon: Linkedin, value: 'linkedin.com/in/prathamjain' },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/pratham-jain-56682620a/', icon: Linkedin, value: 'linkedin.com/pratham-jain-56682620a/' },
 ];
 
 const contactEmail = 'Prathamjain3903@gmail.com';

@@ -5,12 +5,13 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
+import ThemeToggle from '@/components/common/ThemeToggle';
 
 const navLinks = [
-  { name: 'Objective', href: '#objective' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Contact', href: '#contact-info' },
+  // { name: 'Objective', href: '#objective' },
+  // { name: 'Experience', href: '#experience' },
+  // { name: 'Skills', href: '#skills' },
+  { name: 'Contact', href: '#contact-info' }
 ];
 
 export default function Navbar() {
@@ -32,17 +33,20 @@ export default function Navbar() {
       )}
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-20 items-center justify-between gap-4">
           <Link href="/" className="text-2xl font-bold text-foreground hover:text-accent transition-colors font-heading">
             Pratham Jain
           </Link>
-          <nav className="hidden md:flex space-x-2">
-            {navLinks.map((link) => (
-              <Button key={link.name} variant="ghost" asChild className="text-lg font-medium text-foreground hover:text-accent">
-                <Link href={link.href}>{link.name}</Link>
-              </Button>
-            ))}
-          </nav>
+          <div className="flex items-center gap-3">
+            <nav className="hidden md:flex space-x-2">
+              {navLinks.map((link) => (
+                <Button key={link.name} variant="ghost" asChild className="text-lg font-medium text-foreground hover:text-accent">
+                  <Link href={link.href}>{link.name}</Link>
+                </Button>
+              ))}
+            </nav>
+            <ThemeToggle />
+          </div>
           {/* Mobile menu button can be added here if needed */}
         </div>
       </div>

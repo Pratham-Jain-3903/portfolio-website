@@ -3,7 +3,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Target } from 'lucide-react';
 
 const Objective: React.FC = () => {
-  const objectiveStatement = "Highly motivated and results-oriented Data Engineer and Machine Learning Engineer with a strong foundation in software development, big data technologies, and cloud platforms. Eager to leverage expertise in designing, building, and deploying scalable data pipelines and machine learning models to solve complex business problems and drive innovation. Seeking a challenging role to contribute to data-driven decision-making and technological advancement.";
+  const objectiveStatement = `Experienced data and software engineer focused on building production-ready AI and cloud systems. I work across data platforms, distributed systems, and applied ML, with an emphasis on reliability, scale, and cost-aware design. I translate business goals into clear technical outcomes and take ownership from design through production.
+Open to senior engineering and technical leadership roles where deep hands-on work and sound decision-making matter.`
+
 
   return (
     <Card className="w-full shadow-xl rounded-xl">

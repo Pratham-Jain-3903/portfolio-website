@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Code, Package, Cloud, TerminalSquare, Database, Server, BookOpen, BrainCircuit, BarChartBig, Sparkles, Wrench } from 'lucide-react';
+import { Code, Package, Cloud, TerminalSquare, Database, Server, BookOpen, BrainCircuit, BarChartBig, Sparkles, Wrench, Languages, Box, Dices, Lightbulb, Waypoints, Telescope } from 'lucide-react';
 
 interface SkillCategory {
   name: string;
@@ -9,17 +9,18 @@ interface SkillCategory {
   icon: React.ElementType;
 }
 
+// Updated skills data with new categories and skills
 const skillsData: SkillCategory[] = [
-  { name: 'Languages', skills: ['Python', 'Java', 'SQL', 'JavaScript', 'R', 'Scala', 'Bash'], icon: Code },
-  { name: 'Frameworks & Libraries', skills: ['React', 'Next.js', 'Node.js', 'Spring Boot', 'FastAPI', 'Flask', 'Apache Spark', 'Apache Kafka', 'Apache Airflow', 'TensorFlow', 'PyTorch', 'Scikit-learn', 'Pandas', 'NumPy'], icon: Package },
-  { name: 'Cloud Platforms', skills: ['AWS (EC2, S3, Lambda, Glue, EMR, Redshift, SageMaker)', 'GCP (Compute Engine, Cloud Storage, Cloud Functions, Dataflow, BigQuery, Vertex AI)', 'Azure (VMs, Blob Storage, Functions, Data Factory, Synapse Analytics, Machine Learning)'], icon: Cloud },
-  { name: 'DevOps', skills: ['Docker', 'Kubernetes', 'Jenkins', 'Git', 'CI/CD', 'Terraform', 'Ansible'], icon: TerminalSquare },
-  { name: 'Data Engineering', skills: ['ETL/ELT', 'Data Warehousing', 'Data Lakes', 'Data Modeling', 'Data Governance', 'Data Quality', 'Stream Processing', 'Batch Processing'], icon: Database },
-  { name: 'Database Systems', skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Cassandra', 'HBase', 'Oracle'], icon: Server },
-  { name: 'Foundations', skills: ['Data Structures & Algorithms', 'OOPS', 'Operating Systems', 'Computer Networks', 'DBMS'], icon: BookOpen },
-  { name: 'Advanced Topics', skills: ['Machine Learning', 'Deep Learning', 'Natural Language Processing', 'Computer Vision', 'Big Data Analytics'], icon: BrainCircuit },
-  { name: 'Visualisation', skills: ['Tableau', 'Power BI', 'Matplotlib', 'Seaborn', 'D3.js'], icon: BarChartBig },
-  { name: 'Additional Skills', skills: ['Agile Methodologies', 'Problem Solving', 'Communication', 'Teamwork'], icon: Sparkles },
+  { name: 'Languages', skills: ['Python', 'C++', 'Golang', 'CUDA', 'SQL', 'NoSQL'], icon: Languages },
+  { name: 'Frameworks', skills: ['Flask', 'Django', 'FastAPI', 'Gunicorn'], icon: Package },
+  { name: 'Cloud', skills: ['AWS (S3, EC2, DynamoDB)', 'GCP (BigQuery, Vertex AI)', 'Azure (VMware, Databricks)'], icon: Cloud },
+  { name: 'DevOps', skills: ['Docker', 'Kubernetes (basics)', 'Jenkins', 'Git', 'CI/CD'], icon: TerminalSquare },
+  { name: 'Data Engineering', skills: ['Apache Airflow', 'Apache Spark', 'Kafka', 'Flink (basics)', 'Beam (basics)'], icon: Database },
+  { name: 'Database Systems', skills: ['PostgreSQL', 'MongoDB', 'Cassandra', 'DynamoDB', 'Snowflake'], icon: Server },
+  { name: 'Foundations', skills: ['OOP', 'DSA (LeetCode 400+)', 'DBMS', 'Big Data', 'Linux'], icon: BookOpen },
+  { name: 'Advanced Topics', skills: ['Data Lineage (DBT basics)', 'Cataloguing (Marquez)', 'AI/ML (Pytorch, Tensorflow, Pycaret)'], icon: BrainCircuit },
+  { name: 'Visualisation', skills: ['Power BI', 'Plotly', 'Seaborn', 'Graphana'], icon: BarChartBig },
+  { name: 'Additional Skills', skills: ['Data Lakes', 'Iceberg (basics)', 'Lakehouse Architecture', 'Monitoring (Grafana, Prometheus)', 'Postman'], icon: Lightbulb },
 ];
 
 const Skills: React.FC = () => {
