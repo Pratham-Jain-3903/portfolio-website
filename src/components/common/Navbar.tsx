@@ -53,8 +53,9 @@ export default function Navbar() {
           }),
         });
       } catch (e) {
-        // Silently fail - don't block navigation
+        // Log error for monitoring - analytics failures should not block user experience
         console.error('Failed to track form submission:', e);
+        // In production, consider sending to error monitoring service (e.g., Sentry)
       }
     }
     
@@ -71,8 +72,9 @@ export default function Navbar() {
         }),
       });
     } catch (e) {
-      // Silently fail - don't block navigation
+      // Log error for monitoring - analytics failures should not block user experience
       console.error('Failed to track download:', e);
+      // In production, consider sending to error monitoring service (e.g., Sentry)
     }
     
     // Open the resume in a new tab

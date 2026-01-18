@@ -13,12 +13,14 @@ interface ResumeDownloadDialogProps {
   onDownload: (formData?: { name: string; company: string; email: string }) => void;
 }
 
+const INITIAL_FORM_STATE = {
+  name: '',
+  company: '',
+  email: '',
+};
+
 export default function ResumeDownloadDialog({ open, onOpenChange, onDownload }: ResumeDownloadDialogProps) {
-  const [formData, setFormData] = useState({
-    name: '',
-    company: '',
-    email: '',
-  });
+  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSkip = () => {
@@ -35,7 +37,7 @@ export default function ResumeDownloadDialog({ open, onOpenChange, onDownload }:
       onOpenChange(false);
       
       // Reset form
-      setFormData({ name: '', company: '', email: '' });
+      setFormData(INITIAL_FORM_STATE);
     } finally {
       setIsSubmitting(false);
     }
