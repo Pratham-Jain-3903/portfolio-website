@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
 import ThemeToggle from '@/components/common/ThemeToggle';
+import { Download } from 'lucide-react';
+import { useTrackClick } from '@/hooks/use-track-click';
 
 const navLinks = [
   // { name: 'Objective', href: '#objective' },
@@ -16,6 +18,10 @@ const navLinks = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const resumeDownloadTracker = useTrackClick('resume-download-button', { 
+    action: 'download_resume',
+    destination: 'google_drive'
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +30,30 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleResumeClick = async () => {
+    // Track the download
+    resumeDownloadTracker.onClick();
+    
+    // Also send to the resume_downloads endpoint
+    try {
+      const sessionId = typeof window !== 'undefined' ? sessionStorage.getItem('analyticsSessionId') || '' : '';
+      await fetch('/api/analytics/resume_downloads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sessionId,
+          timestamp: new Date().toISOString(),
+          source: 'navbar',
+        }),
+      });
+    } catch (e) {
+      // Silently fail - don't block navigation
+    }
+    
+    // Open the resume in a new tab
+    window.open('https://drive.google.com/file/d/1aNzxysdndIRi2BPtyiqrmuF5iYeAHStH/view?usp=sharing', '_blank');
+  };
 
   return (
     <header
@@ -45,6 +75,16 @@ export default function Navbar() {
                 </Button>
               ))}
             </nav>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={handleResumeClick}
+              aria-label="Download Resume"
+              className="relative w-10 h-10 rounded-full border border-border/60 hover:border-accent/70 hover:bg-accent/10"
+              title="Download Resume"
+            >
+              <Download className="h-5 w-5" />
+            </Button>
             <ThemeToggle />
           </div>
           {/* Mobile menu button can be added here if needed */}
