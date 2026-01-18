@@ -35,7 +35,7 @@ export default function Navbar() {
     // Track the download
     resumeDownloadTracker.onClick();
     
-    // Also send to the resume_downloads endpoint
+    // Also send to the resume_downloads endpoint for dedicated tracking
     try {
       const sessionId = typeof window !== 'undefined' ? sessionStorage.getItem('analyticsSessionId') || '' : '';
       await fetch('/api/analytics/resume_downloads', {
@@ -52,6 +52,7 @@ export default function Navbar() {
     }
     
     // Open the resume in a new tab
+    // Note: Resume URL is specified in the issue requirements
     window.open('https://drive.google.com/file/d/1aNzxysdndIRi2BPtyiqrmuF5iYeAHStH/view?usp=sharing', '_blank');
   };
 

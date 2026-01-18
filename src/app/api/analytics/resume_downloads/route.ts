@@ -5,7 +5,8 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { sessionId, timestamp, source } = body;
 
-    // Log the resume download event
+    // Log the resume download event (for development/debugging)
+    // In production, this should be sent to a proper logging/analytics service
     console.log('[Analytics] Resume Download:', {
       sessionId,
       timestamp,
