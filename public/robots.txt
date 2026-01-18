@@ -1,0 +1,29 @@
+# robots.txt for Pratham Jain's Portfolio Website
+# This portfolio website is open for crawling to maximize visibility
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Disallow crawling of Next.js internals and build artifacts
+Disallow: /_next/static/
+Disallow: /api/
+
+# Disallow crawling of analytics and tracking endpoints
+Disallow: /analytics/
+
+# Allow crawling of images and public assets
+Allow: /images/
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+Allow: /*.ico$
+
+# Crawl delay (optional, commented out by default)
+# Crawl-delay: 1
+
+# Sitemap location (update with actual sitemap URL when available)
+# Sitemap: https://prathamjain.in/sitemap.xml
