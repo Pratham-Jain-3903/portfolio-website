@@ -14,6 +14,9 @@ A modern, feature-rich portfolio website built with Next.js 15, showcasing profe
 - **Content Filtering**: Quick filter bar to view specific sections (Experience, Projects, Recognition, etc.)
 - **Smooth Scrolling**: Enhanced scrolling experience with proper scroll margins
 - **Scroll-to-Top Button**: Convenient button to quickly return to the top of the page
+- **Spline 3D robot** : follows your cursor around for +ive vibes and good luck
+
+<img width="2240" height="1400" alt="image" src="https://github.com/user-attachments/assets/b359daaa-31f1-4db0-b18b-57924d8797a6" />
 
 ### 📄 Resume Download
 - **One-Click Download**: Round download button in the navbar for easy resume access
