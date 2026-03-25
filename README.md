@@ -1,152 +1,151 @@
-# Pratham Jain - Portfolio Website
+# Pratham Jain — Portfolio Website
 
-A modern, feature-rich portfolio website built with Next.js 15, showcasing professional experience, projects, skills, and achievements. The website includes comprehensive analytics tracking and an interactive user interface.
+[Live site → prathamjain.in](https://prathamjain.in)
 
-🌐 **Live Site**: [prathamjain.in](https://prathamjain.in)
+Badges
 
-## ✨ Features
+- ![Next.js](https://img.shields.io/badge/Next.js-15.2.8-black?logo=nextdotjs&logoColor=white)
+- ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript&logoColor=white)
+- ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-cyan?logo=tailwindcss&logoColor=white)
+- ![React](https://img.shields.io/badge/React-18.3.1-blue?logo=react&logoColor=white)
+- ![Node.js](https://img.shields.io/badge/Node-20.x-green?logo=node.js&logoColor=white)
+- ![Vercel](https://img.shields.io/badge/Hosting-Vercel-black?logo=vercel&logoColor=white)
+- ![Analytics](https://img.shields.io/badge/Analytics-Console%2C%20Firebase-lightgrey)
+- ![License](https://img.shields.io/badge/License-Private-lightgrey)
 
-### 🎨 User Interface
-- **Responsive Design**: Fully responsive layout that works seamlessly across all devices
-- **Dark/Light Theme Toggle**: System-aware theme switcher with smooth transitions
-- **Animated Hero Section**: Eye-catching hero section with dynamic background elements
-- **Interactive Navigation**: Smart navbar with scroll detection and backdrop blur effects
-- **Content Filtering**: Quick filter bar to view specific sections (Experience, Projects, Recognition, etc.)
-- **Smooth Scrolling**: Enhanced scrolling experience with proper scroll margins
-- **Scroll-to-Top Button**: Convenient button to quickly return to the top of the page
-- **Spline 3D robot** : follows your cursor around for +ive vibes and good luck
+Overview
+
+This repository contains the source for a personal portfolio built with Next.js (App Router) and TypeScript. The site focuses on performance, accessibility, and a clean developer experience. It includes a configurable analytics system and is ready for production deployment.
+
+Live Demo
+
+- https://prathamjain.in
+
+Key Highlights
+
+- Responsive, accessible UI with light/dark theme support
+- Comprehensive analytics and interaction tracking (sessions, page views, scroll depth, interactions, resume downloads)
+- Component-driven UI using Radix UI primitives and Tailwind CSS
+- 3D interactive hero element powered by Spline
+- Resume download flow with optional contact form and tracking
+- Deployable to Vercel for production
+
+Features
+
+- Responsive layout with theme toggle and smooth transitions
+- Animated hero section with interactive 3D element
+- Smart navigation with scroll detection and content filtering
+- Resume download dialog with optional contact form and analytics tracking
+- Feedback widget, loading skeletons, and lazy loading for performance
+- Deep linking and URL-driven state for sharing specific content
+
+User interface preview
 
 <img width="2240" height="1400" alt="image" src="https://github.com/user-attachments/assets/b359daaa-31f1-4db0-b18b-57924d8797a6" />
 
-### 📄 Resume Download
-- **One-Click Download**: Round download button in the navbar for easy resume access
-- **Optional Contact Form**: Collects visitor information (Name, Company, Email) for networking
-- **Skip Option**: Users can download without providing contact details
-- **Google Drive Integration**: Resume hosted on Google Drive for reliability
+Resume download preview
 
 ![Resume Download Dialog](https://github.com/user-attachments/assets/7cac9525-041c-4827-bb82-db94a89bac6a)
 
-### 📊 Content Sections
-- **Objective**: Professional summary and career goals
-- **Experience**: Detailed work history with expandable descriptions
-  - Luminous Power Technologies (Senior Software Engineer & Data Engineer Intern)
-  - Bosch Global Software Technologies (Research Assistant)
-- **Technical Skills**: Comprehensive skill categorization
-  - Languages, Frameworks, Cloud Platforms
-  - DevOps, Data Engineering, Database Systems
-  - Advanced Topics, Visualization Tools
-- **Projects**: Showcase of hackathon wins, research, and personal builds
-  - Interactive cards with expandable details in sidebar
-  - Achievement badges and metrics
-  - Technology tags and external links
-- **Freelance Experience**: Consulting and contract work
-- **Volunteer Experience**: Community contributions and leadership roles
-- **Certifications**: Professional credentials with verification links
-- **Recommendations**: Testimonials from mentors and colleagues
-- **Education**: Academic background and achievements
-- **LinkedIn Posts**: Embedded LinkedIn content carousel
+Tech Stack
 
-### 📈 Analytics & Tracking
-- **Session Tracking**: Unique session IDs for user journey analysis
-- **Page View Analytics**: Performance metrics and timing data
-- **Interaction Tracking**: Monitors clicks, navigation, and user engagement
-- **Scroll Behavior**: Tracks scroll depth and section view times
-- **Resume Downloads**: Dedicated tracking for resume download events
-- **Form Submissions**: Analytics for contact form completions
-- **Theme Preferences**: Tracks user theme choices
-- **Engagement Metrics**: Calculates bounce rates and deep engagement
+Frontend
+- Next.js 15 (App Router)
+- React 18
+- TypeScript
+- Tailwind CSS
+- Radix UI (primitives)
+- Lucide React (icons)
+- @splinetool/react-spline (3D interaction)
+- React Query (data fetching)
+- Recharts (visualizations)
 
-### 🎯 User Experience Features
-- **Feedback Widget**: Collects user feedback with thumbs up/down and comments
-- **Detail Sidebar**: Expandable project details without page navigation
-- **Loading Skeletons**: Smooth loading states for better perceived performance
-- **Lazy Loading**: Optimized component loading for faster initial page load
-- **Search Parameters**: Deep linking support for direct content access
-- **Content Sections Navigation**: Jump to specific sections with visual indicators
+Backend & APIs
+- Next.js API routes (analytics endpoints)
+- Optional integrations: Firebase, PostgreSQL, MongoDB
 
-## 🛠️ Tech Stack
+Development
+- Node.js 20
+- npm
+- ESLint, TypeScript strict mode
+- Turbopack for development
+- Genkit for AI integrations
 
-### Frontend
-- **Framework**: Next.js 15.2.8 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS with custom animations
-- **UI Components**: Radix UI primitives
-- **Icons**: Lucide React
-- **State Management**: React Hooks
-- **Theme**: next-themes for dark/light mode
+Analytics & Tracking
 
-### Backend & APIs
-- **API Routes**: Next.js API routes for analytics endpoints
-  - `/api/analytics/session` - Session initialization
-  - `/api/analytics/interaction` - User interaction tracking
-  - `/api/analytics/resume_downloads` - Resume download tracking
-  - `/api/analytics/resume_download_form` - Contact form submissions
-  - `/api/analytics/performance` - Performance metrics
-  - `/api/analytics/scroll` - Scroll behavior tracking
-  - `/api/analytics/engagement` - User engagement metrics
-  - `/api/analytics/theme` - Theme preference tracking
-  - `/api/analytics/feedback` - User feedback collection
+This project includes a configurable analytics provider and development-first logging. Key tracked data:
 
-### Development Tools
-- **Package Manager**: npm
-- **Linting**: ESLint with Next.js configuration
-- **Type Checking**: TypeScript strict mode
-- **Build Tool**: Next.js with Turbopack
-- **Version Control**: Git & GitHub
+- Session initialization and unique session IDs
+- Page views and performance metrics (TTFB, LCP, CLS, FID)
+- Interaction and event tracking (clicks, navigation, resume downloads)
+- Scroll depth and section engagement via Intersection Observer
+- Theme preference events and feedback submissions
 
-## 🚀 Getting Started
+API routes (examples)
+- /api/analytics/session — session initialization
+- /api/analytics/interaction — interaction events
+- /api/analytics/resume_downloads — resume download events
+- /api/analytics/resume_download_form — contact form submissions
+- /api/analytics/performance — performance metrics
+- /api/analytics/scroll — scroll behavior
+- /api/analytics/engagement — engagement metrics
+- /api/analytics/theme — theme preference events
+- /api/analytics/feedback — feedback submissions
 
-### Prerequisites
+By default analytics are logged to the console for development. Integrations with Firebase, Google Analytics, Mixpanel, or a custom backend are possible and straightforward.
+
+Hosting & Deployment
+
+Recommended platform: Vercel (native Next.js support). Standard build commands:
+
+- Build: `npm run build`
+- Start (production): `npm start`
+
+Continuous deployment on Vercel is recommended for instant previews and production deployments.
+
+Getting Started
+
+Prerequisites
+
 - Node.js 20.x or higher
-- npm or yarn package manager
+- npm
 
-### Installation
+Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Pratham-Jain-3903/portfolio-website.git
-   cd portfolio-website
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Run the development server**
-   ```bash
-   npm run dev
-   ```
-
-4. **Open in browser**
-   Navigate to [http://localhost:9002](http://localhost:9002)
-
-### Available Scripts
+1. Clone the repository
 
 ```bash
-# Start development server with Turbopack on port 9002
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
-
-# Run ESLint
-npm run lint
-
-# Type check without emitting files
-npm run typecheck
-
-# Start Genkit development
-npm run genkit:dev
-
-# Start Genkit with watch mode
-npm run genkit:watch
+git clone https://github.com/Pratham-Jain-3903/portfolio-website.git
+cd portfolio-website
 ```
 
-## 📁 Project Structure
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Run development server
+
+```bash
+npm run dev
+```
+
+4. Open locally at http://localhost:9002
+
+Available Scripts
+
+```bash
+npm run dev       # Start development server with Turbopack on port 9002
+npm run build     # Build for production
+npm start         # Start production server
+npm run lint      # Run ESLint
+npm run typecheck # Type check without emitting files
+npm run genkit:dev    # Start Genkit development
+npm run genkit:watch  # Start Genkit with watch mode
+```
+
+Project Structure
 
 ```
 portfolio-website/
@@ -159,139 +158,47 @@ portfolio-website/
 │   │   └── page.tsx                # Home page
 │   ├── components/
 │   │   ├── common/                 # Reusable components
-│   │   │   ├── Navbar.tsx
-│   │   │   ├── ResumeDownloadDialog.tsx
-│   │   │   ├── ThemeToggle.tsx
-│   │   │   ├── FilterBar.tsx
-│   │   │   ├── DetailSidebar.tsx
-│   │   │   ├── FeedbackWidget.tsx
-│   │   │   ├── ScrollToTopButton.tsx
-│   │   │   ├── Footer.tsx
-│   │   │   └── AnalyticsProvider.tsx
-│   │   ├── sections/               # Page sections
-│   │   │   ├── HeroSection.tsx
-│   │   │   ├── Objective.tsx
-│   │   │   ├── Experience.tsx
-│   │   │   ├── Skills.tsx
-│   │   │   ├── Projects.tsx
-│   │   │   ├── FreelanceExperience.tsx
-│   │   │   ├── VolunteerExperience.tsx
-│   │   │   ├── Certifications.tsx
-│   │   │   ├── Recommendations.tsx
-│   │   │   ├── Education.tsx
-│   │   │   ├── ContactInfo.tsx
-│   │   │   └── LinkedInPostCarousel.tsx
-│   │   └── ui/                     # Shadcn/UI components
+│   │   └── sections/               # Page sections
 │   ├── hooks/                      # Custom React hooks
-│   │   ├── use-toast.ts
-│   │   └── use-track-click.ts
 │   ├── lib/                        # Utility functions
-│   │   └── utils.ts
 │   └── ai/                         # AI/Genkit integration
 ├── public/                         # Static assets
-├── .gitignore                      # Git ignore rules
-├── next.config.ts                  # Next.js configuration
-├── tailwind.config.ts              # Tailwind CSS configuration
-├── tsconfig.json                   # TypeScript configuration
-├── package.json                    # Dependencies and scripts
-└── README.md                       # This file
+├── .gitignore
+├── next.config.ts
+├── tailwind.config.ts
+├── tsconfig.json
+├── package.json
+└── README.md
 ```
 
-## 🎨 Key Components
+Key Components
 
-### Navbar
-- Fixed position with scroll-aware styling
-- Download resume button with analytics tracking
-- Theme toggle with smooth transitions
-- Responsive design with mobile support
+- Navbar with resume download and theme toggle
+- Resume download dialog with optional contact form
+- Analytics provider with session management and performance metrics
+- Filter bar and detail sidebar for projects
+- Feedback widget and interactive components
 
-![Navbar with Download Button](https://github.com/user-attachments/assets/bb47e616-ac6a-4f9b-a58e-60af6b9274e1)
+Privacy & Security
 
-### Resume Download Dialog
-- Optional contact form for networking
-- Skip option for immediate download
-- Clean, accessible UI with proper validation
-- Integrated analytics tracking
+- Analytics used to improve UX only. No sensitive data is collected without consent.
+- Contact forms are optional and validated before submission.
+- Resume downloads do not require providing personal information.
 
-### Analytics Provider
-- Session management with unique IDs
-- Intersection Observer for section tracking
-- Performance monitoring with timing APIs
-- Scroll behavior analysis
-- Engagement metrics calculation
+Future Enhancements
 
-### Filter Bar
-- Quick navigation to specific content types
-- Smooth transitions when filtering
-- Visual indicators for active filter
-- Keyboard accessible
+- Blog with MDX support
+- Admin dashboard for analytics
+- PWA support and offline capabilities
+- Multi-language support (i18n)
+- A/B testing for UI variations
 
-### Detail Sidebar
-- Expandable project details
-- Smooth slide-in animation
-- Close on outside click or ESC key
-- Deep linking support with URL parameters
+Author
 
-## 📊 Analytics Features
-
-The website includes a comprehensive analytics system that tracks:
-
-1. **Session Data**: User sessions with unique IDs, referrer information, screen resolution
-2. **User Interactions**: Clicks, navigation events, button interactions
-3. **Content Engagement**: Section view times, scroll depth, time on site
-4. **Resume Downloads**: Tracks who downloaded the resume and their details (if provided)
-5. **Performance Metrics**: Page load times, TTFB, LCP, FID, CLS
-6. **User Preferences**: Theme choices (dark/light mode)
-7. **Feedback**: User satisfaction and comments
-
-All analytics data is logged to the console for development and can be easily integrated with services like:
-- Firebase Analytics
-- Google Analytics
-- Mixpanel
-- Custom database solutions (MongoDB, PostgreSQL, etc.)
-
-## 🔒 Privacy & Security
-
-- Analytics data is used for improving user experience
-- No sensitive information is collected without consent
-- Contact form submission is optional
-- Resume downloads work without providing personal information
-- All API endpoints implement proper error handling
-- No security vulnerabilities detected by CodeQL analysis
-
-## 🎯 Future Enhancements
-
-- [ ] Blog section with MDX support
-- [ ] Project case studies with detailed write-ups
-- [ ] Contact form with email notifications
-- [ ] Integration with Firebase for analytics storage
-- [ ] Admin dashboard for viewing analytics
-- [ ] A/B testing for UI variations
-- [ ] Multi-language support (i18n)
-- [ ] PWA capabilities for offline access
-- [ ] Advanced animations with Framer Motion
-
-## 📝 License
-
-This project is private and proprietary. All rights reserved.
-
-## 👤 Author
-
-**Pratham Jain**
-- Website: [prathamjain.in](https://prathamjain.in)
-- LinkedIn: [linkedin.com/in/pratham-jain-56682620a/](https://www.linkedin.com/in/pratham-jain-56682620a/)
-- GitHub: [github.com/Pratham-Jain-3903](https://github.com/Pratham-Jain-3903)
-- Email: Prathamjain3903@gmail.com
-
-## 🙏 Acknowledgments
-
-- Next.js team for the amazing framework
-- Vercel for hosting and deployment
-- Shadcn for beautiful UI components
-- Radix UI for accessible primitives
-- Lucide for the icon library
-- Tailwind CSS for utility-first styling
+Pratham Jain — https://prathamjain.in
+LinkedIn: https://www.linkedin.com/in/pratham-jain-56682620a/
+GitHub: https://github.com/Pratham-Jain-3903
 
 ---
 
-Built with ❤️ using Next.js, TypeScript, and Tailwind CSS
+Built with Next.js, TypeScript, and Tailwind CSS
