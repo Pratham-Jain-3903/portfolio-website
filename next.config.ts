@@ -127,7 +127,7 @@ const nextConfig: NextConfig = {
       }, 
       {
         protocol: 'http',
-        hostname: 'sangamuniversity.ac.in',
+        hostname: 'https://upload.wikimedia.org',
         port: '',
         pathname: '/**',
       }, 
