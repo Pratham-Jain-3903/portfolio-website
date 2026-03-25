@@ -52,7 +52,7 @@ const volunteerExperienceData: VolunteerExperienceEntry[] = [
     location: 'Hyderabad, Telangana, India · Hybrid',
     description: 'Participated in data science workshops and collaborative projects focusing on applied machine learning and data analysis.',
     skills: ['Data Science', 'Applied Machine Learning', 'Python'],
-    logoUrl: '',
+    logoUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a3/IIT_Hyderabad_Logo.svg',
   },
   {
     role: 'Member',
@@ -62,7 +62,7 @@ const volunteerExperienceData: VolunteerExperienceEntry[] = [
     location: 'Hyderabad, Telangana, India · Hybrid',
     description: 'Contributed to community learning sessions and project collaborations around data science and ML topics.',
     skills: ['Data Science', 'Applied Machine Learning'],
-    logoUrl: '',
+    logoUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a3/IIT_Hyderabad_Logo.svg',
   },
 ];
 

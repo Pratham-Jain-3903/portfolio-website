@@ -48,7 +48,7 @@ const certificationData: CertificationEntry[] = [
     issuer: 'SWAYAM MHRD',
     issuedDate: 'Aug 2024',
     credentialId: 'NPTEL24CS118S1050201037',
-    logoUrl: 'http://sangamuniversity.ac.in/wp-content/uploads/2023/03/nptel.jpg',
+    logoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/1/1c/IIT_Kharagpur_Logo.svg/330px-IIT_Kharagpur_Logo.svg.png',
   },
   {
     title: 'Google Data Analytics Professional Certificate',

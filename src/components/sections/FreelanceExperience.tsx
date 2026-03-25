@@ -33,7 +33,7 @@ const freelanceExperienceData: FreelanceExperienceEntry[] = [
     company: 'YourGuide',
     duration: 'Aug 2022 - Oct 2022',
     location: 'Hyderabad, Telangana, India',
-    logoUrl: 'https://media.licdn.com/dms/image/v2/D4D0BAQH1DtSTwuBLfw/company-logo_200_200/company-logo_200_200/0/1691164381194/yourguide_india_logo?e=1752105600&v=beta&t=3-y0q542xlkKddGR049V44kUV0B1tKrcj5KO3WwxKZA', // Replace with actual logo path
+    logoUrl: 'https://media.licdn.com/dms/image/v2/D4D0BAQH1DtSTwuBLfw/company-logo_200_200/company-logo_200_200/0/1691164381194/yourguide_india_logo?e=2147483647&v=beta&t=3XDDqVXjnv0VbJifBHBhgRmfCStmPI5845lgYJTu3QE', // Replace with actual logo path
     responsibilities: [
       'Leveraged business intelligence tools to optimize intern onboarding processes, reducing HR time by 50%',
       'Developed data-driven pitch decks, combining market research and HR analytics, which were instrumental in securing seed funding',
@@ -46,7 +46,7 @@ const freelanceExperienceData: FreelanceExperienceEntry[] = [
     company: 'YourGuide',
     duration: 'Jan 2022 - Aug 2022',
     location: 'Hyderabad, Telangana, India',
-    logoUrl: 'https://media.licdn.com/dms/image/v2/D4D0BAQH1DtSTwuBLfw/company-logo_200_200/company-logo_200_200/0/1691164381194/yourguide_india_logo?e=1752105600&v=beta&t=3-y0q542xlkKddGR049V44kUV0B1tKrcj5KO3WwxKZA', // Replace with actual logo path
+    logoUrl: 'https://media.licdn.com/dms/image/v2/D4D0BAQH1DtSTwuBLfw/company-logo_200_200/company-logo_200_200/0/1691164381194/yourguide_india_logo?e=2147483647&v=beta&t=3XDDqVXjnv0VbJifBHBhgRmfCStmPI5845lgYJTu3QE', // Replace with actual logo path
     responsibilities: [
       'Conducted market research and survey design, impacting over 500 users',
       'Provided actionable insights from detailed analysis, guiding business decisions'
