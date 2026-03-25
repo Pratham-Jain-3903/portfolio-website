@@ -1,10 +1,18 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { Suspense, useEffect, useRef } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useTheme } from 'next-themes';
 
 export default function AnalyticsProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <Suspense fallback={null}>
+      <AnalyticsProviderInner>{children}</AnalyticsProviderInner>
+    </Suspense>
+  );
+}
+
+function AnalyticsProviderInner({ children }: { children: React.ReactNode }) {
   const { theme, resolvedTheme } = useTheme();
   const pathname = usePathname();
   const searchParams = useSearchParams();
