@@ -1,18 +1,47 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { GithubIcon, LinkedinIcon } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { sectionData } from '@/lib/data';
-import SectionHeading from './SectionHeading';
-import { HeroIcons } from './HeroIcons';
+import { Application } from '@splinetool/runtime';
 import { BackgroundBeams } from './ui/background-beams'; // Assuming this component exists and is needed
 import About from '@/components/sections/Objective'; // Import the About component
 
+
 const Hero: React.FC = () => {
-  // Assuming About component renders the text directly within its CardContent
-  // Or you can extract the text from the component if needed, but rendering directly might be simpler initially.
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    let app: Application | null = null;
+    let isMounted = true;
+
+    const setupSpline = async () => {
+      const canvas = canvasRef.current;
+
+      if (!canvas || !isMounted) {
+        return;
+      }
+
+      try {
+        app = new Application(canvas);
+        await app.load('https://prod.spline.design/vPAUfiZt37KAdHi4/scene.splinecode');
+      } catch (error) {
+        console.error('[Hero] Failed to load Spline scene:', error);
+      }
+    };
+
+    setupSpline();
+
+    return () => {
+      isMounted = false;
+
+      if (app && typeof app.dispose === 'function') {
+        app.dispose();
+      }
+    };
+  }, []);
 
   return (
     <section
@@ -22,7 +51,7 @@ const Hero: React.FC = () => {
       <BackgroundBeams className='absolute top-0 left-0 w-full h-full pointer-events-none' />
 
       <div className='container px-4 md:px-6 relative z-10'>
-        <div className='grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]'>
+        <div className='grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(320px,560px)] lg:items-center lg:gap-12'>
           <div className='flex flex-col justify-center space-y-4'>
             <div className='space-y-2'>
               <h1 className='text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-foreground via-foreground/80 to-foreground animate-gradient'>
@@ -35,7 +64,7 @@ const Hero: React.FC = () => {
 
             {/* Integrate the About content here */}
             <div className="max-w-[700px] mx-auto text-md text-foreground/90 space-y-4 mt-6">
-               {/* Assuming About component directly renders the text within its CardContent */}
+              {/* Assuming About component directly renders the text within its CardContent */}
               <About />
             </div>
 
@@ -52,8 +81,13 @@ const Hero: React.FC = () => {
               ))}
             </div>
           </div>
-          <div className='hidden lg:flex items-center justify-center'>
-            <HeroIcons />
+          <div className='order-first flex items-center justify-center min-h-[320px] sm:min-h-[420px] lg:order-none lg:min-h-[520px]'>
+            <canvas
+              ref={canvasRef}
+              id='canvas3d'
+              className='h-[320px] w-full max-w-[520px] bg-transparent sm:h-[420px] lg:h-[520px]'
+              style={{ display: 'block', borderRadius: '1rem' }}
+            />
           </div>
         </div>
       </div>

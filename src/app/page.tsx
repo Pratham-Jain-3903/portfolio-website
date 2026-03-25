@@ -76,16 +76,17 @@ function isSectionVisible(sectionId: string, activeFilter: FilterId): boolean {
 
 function HomeContent() {
   const searchParams = useSearchParams();
+  const detailParam = searchParams.get('detail');
   const [activeFilter, setActiveFilter] = useState<FilterId>('all');
   const [sidebarProjectId, setSidebarProjectId] = useState<string | null>(null);
 
   // Initialize sidebar from URL on mount
   useEffect(() => {
-    const detailParam = searchParams.get('detail');
-    if (detailParam) {
-      setSidebarProjectId(detailParam);
-    }
-  }, [searchParams]);
+    setSidebarProjectId((current) => {
+      const nextValue = detailParam || null;
+      return current === nextValue ? current : nextValue;
+    });
+  }, [detailParam]);
 
   const handleFilterChange = useCallback((filter: FilterId) => {
     setActiveFilter(filter);
@@ -222,13 +223,13 @@ function HomeContent() {
 
       <Footer />
       <ScrollToTopButton />
-      
+
       {/* Fixed bottom filter bar */}
       <FilterBar activeFilter={activeFilter} onFilterChange={handleFilterChange} />
-      
+
       {/* Fixed left feedback widget */}
       <FeedbackWidget />
-      
+
       {/* Right-side detail sidebar */}
       <DetailSidebar projectId={sidebarProjectId} onClose={handleCloseSidebar} />
     </div>
