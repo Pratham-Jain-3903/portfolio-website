@@ -1,35 +1,47 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+import {
+  asIsoTimestamp,
+  asOptionalString,
+  readJsonBody,
+} from '@/lib/analytics';
+import { ensureAnalyticsSchema, getPool } from '@/lib/db';
+
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { sessionId, timestamp, name, company, email, source } = body;
+    const body = await readJsonBody<Record<string, unknown>>(request);
+    await ensureAnalyticsSchema();
+    const pool = getPool();
 
-    // Log the resume download form submission (for development/debugging)
-    // In production, this should be stored in a database or sent to an analytics service
-    console.log('[Analytics] Resume Download Form Submission:', {
-      sessionId,
-      timestamp,
-      name,
-      company,
-      email,
-      source,
-      userAgent: request.headers.get('user-agent'),
-      referer: request.headers.get('referer'),
-    });
-
-    // Here you would typically:
-    // 1. Validate the email format
-    // 2. Store this in a database (Firebase, MongoDB, etc.)
-    // 3. Send to a CRM system (Salesforce, HubSpot, etc.)
-    // 4. Send a confirmation email to the user
-    // 5. Notify the resume owner of the download
-    
-    // For now, we'll just log it and return success
+    await pool.query(
+      `
+        INSERT INTO analytics_resume_download_forms (
+          session_id,
+          name,
+          company,
+          email,
+          source,
+          event_timestamp,
+          user_agent,
+          referer
+        )
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      `,
+      [
+        asOptionalString(body.sessionId),
+        asOptionalString(body.name),
+        asOptionalString(body.company),
+        asOptionalString(body.email),
+        asOptionalString(body.source),
+        asIsoTimestamp(body.timestamp),
+        asOptionalString(request.headers.get('user-agent')),
+        asOptionalString(request.headers.get('referer')),
+      ]
+    );
 
     return NextResponse.json(
-      { 
-        success: true, 
+      {
+        success: true,
         message: 'Form submission tracked successfully',
       },
       { status: 200 }

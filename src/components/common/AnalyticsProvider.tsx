@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useTheme } from 'next-themes';
 
 export default function AnalyticsProvider({ children }: { children: React.ReactNode }) {
   const { theme, resolvedTheme } = useTheme();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const sessionIdRef = useRef<string>('');
   const sessionStartRef = useRef<number>(0);
   const sectionsViewedRef = useRef<Set<string>>(new Set());
@@ -13,7 +16,7 @@ export default function AnalyticsProvider({ children }: { children: React.ReactN
   const sectionTimesRef = useRef<Map<string, { start: number; duration: number }>>(new Map());
 
   useEffect(() => {
-    const sessionId = `s_${Date.now()}_${Math.random().toString(36).slice(2,9)}`;
+    const sessionId = `s_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
     sessionIdRef.current = sessionId;
     sessionStartRef.current = Date.now();
 
@@ -39,9 +42,9 @@ export default function AnalyticsProvider({ children }: { children: React.ReactN
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(sessionPayload),
-    }).catch(() => {});
+    }).catch(() => { });
 
-    try { localStorage.setItem('hasVisitedBefore', 'true'); } catch {}
+    try { localStorage.setItem('hasVisitedBefore', 'true'); } catch { }
 
     // Performance snapshot (best-effort)
     setTimeout(() => {
@@ -61,9 +64,9 @@ export default function AnalyticsProvider({ children }: { children: React.ReactN
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(perfPayload),
-          }).catch(() => {});
+          }).catch(() => { });
         }
-      } catch {}
+      } catch { }
     }, 5000);
 
     // Scroll tracking
@@ -115,12 +118,22 @@ export default function AnalyticsProvider({ children }: { children: React.ReactN
             timestamp: data.timestamp || new Date().toISOString(),
             metadata: { navigationMethod: data.method },
           }),
-        }).catch(() => {});
-      } catch {}
+        }).catch(() => { });
+      } catch { }
     };
 
     // On unload, send summaries
     const onUnload = () => {
+      const now = Date.now();
+
+      sectionTimesRef.current.forEach((data, name) => {
+        if (typeof data.start === 'number') {
+          data.duration += now - data.start;
+          delete (data as { start?: number }).start;
+          sectionTimesRef.current.set(name, data);
+        }
+      });
+
       const timeOnSite = Date.now() - sessionStartRef.current;
 
       const scrollBehavior = {
@@ -137,7 +150,7 @@ export default function AnalyticsProvider({ children }: { children: React.ReactN
 
       try {
         navigator.sendBeacon('/api/analytics/scroll', JSON.stringify(scrollBehavior));
-      } catch {}
+      } catch { }
 
       const engagement = {
         sessionId,
@@ -151,7 +164,7 @@ export default function AnalyticsProvider({ children }: { children: React.ReactN
 
       try {
         navigator.sendBeacon('/api/analytics/engagement', JSON.stringify(engagement));
-      } catch {}
+      } catch { }
     };
 
     window.addEventListener('beforeunload', onUnload);
@@ -161,7 +174,31 @@ export default function AnalyticsProvider({ children }: { children: React.ReactN
       window.removeEventListener('beforeunload', onUnload);
       observer.disconnect();
     };
-  }, [theme, resolvedTheme]);
+  }, []);
+
+  useEffect(() => {
+    const sessionId = sessionIdRef.current;
+
+    if (!sessionId) {
+      return;
+    }
+
+    const search = searchParams.toString();
+    const pagePath = search ? `${pathname}?${search}` : pathname;
+
+    fetch('/api/analytics/interaction', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        sessionId,
+        type: 'page_view',
+        element: pagePath,
+        sectionContext: currentSectionRef.current,
+        timestamp: new Date().toISOString(),
+        metadata: { pathname, search },
+      }),
+    }).catch(() => { });
+  }, [pathname, searchParams]);
 
   // Track theme changes separately (best-effort)
   useEffect(() => {
@@ -177,8 +214,8 @@ export default function AnalyticsProvider({ children }: { children: React.ReactN
           preferredTheme: theme || resolvedTheme || 'dark',
           systemTheme: resolvedTheme || 'dark',
         }),
-      }).catch(() => {});
-    } catch {}
+      }).catch(() => { });
+    } catch { }
   }, [theme, resolvedTheme]);
 
   return <>{children}</>;

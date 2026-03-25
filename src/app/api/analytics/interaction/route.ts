@@ -1,22 +1,54 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+import {
+  asIsoTimestamp,
+  asObject,
+  asOptionalString,
+  asString,
+  ensureSession,
+  readJsonBody,
+} from '@/lib/analytics';
+import { getPool } from '@/lib/db';
+
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { sessionId, type, element, sectionContext, timestamp, metadata } = body;
+    const body = await readJsonBody<Record<string, unknown>>(request);
+    const sessionId = asString(body.sessionId);
+    const type = asString(body.type);
+    const element = asString(body.element);
 
-    // Log the interaction event
-    console.log('[Analytics] Interaction:', {
-      sessionId,
-      type,
-      element,
-      sectionContext,
-      timestamp,
-      metadata,
-    });
+    if (!sessionId || !type || !element) {
+      return NextResponse.json(
+        { success: false, error: 'sessionId, type, and element are required' },
+        { status: 400 }
+      );
+    }
 
-    // Here you would typically store this in a database or send to an analytics service
-    // For now, we'll just log it and return success
+    await ensureSession(sessionId);
+
+    const pool = getPool();
+
+    await pool.query(
+      `
+        INSERT INTO analytics_interactions (
+          session_id,
+          type,
+          element,
+          section_context,
+          event_timestamp,
+          metadata
+        )
+        VALUES ($1, $2, $3, $4, $5, $6::jsonb)
+      `,
+      [
+        sessionId,
+        type,
+        element,
+        asOptionalString(body.sectionContext),
+        asIsoTimestamp(body.timestamp),
+        JSON.stringify(asObject(body.metadata)),
+      ]
+    );
 
     return NextResponse.json(
       { success: true, message: 'Interaction tracked' },

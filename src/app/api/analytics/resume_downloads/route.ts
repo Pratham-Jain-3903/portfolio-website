@@ -1,27 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+import { asIsoTimestamp, asOptionalString, asString, readJsonBody } from '@/lib/analytics';
+import { ensureAnalyticsSchema, getPool } from '@/lib/db';
+
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { sessionId, timestamp, source } = body;
+    const body = await readJsonBody<Record<string, unknown>>(request);
+    await ensureAnalyticsSchema();
+    const pool = getPool();
 
-    // Log the resume download event (for development/debugging)
-    // In production, this should be sent to a proper logging/analytics service
-    console.log('[Analytics] Resume Download:', {
-      sessionId,
-      timestamp,
-      source,
-      userAgent: request.headers.get('user-agent'),
-      referer: request.headers.get('referer'),
-    });
-
-    // Here you would typically:
-    // 1. Store this in a database (Firebase, MongoDB, etc.)
-    // 2. Send to an analytics service (Google Analytics, Mixpanel, etc.)
-    // 3. Aggregate download statistics
-    
-    // For now, we'll just log it and return success
-    // You can extend this later to integrate with Firebase or other analytics services
+    await pool.query(
+      `
+        INSERT INTO analytics_resume_downloads (
+          session_id,
+          source,
+          event_timestamp,
+          user_agent,
+          referer
+        )
+        VALUES ($1, $2, $3, $4, $5)
+      `,
+      [
+        asOptionalString(body.sessionId),
+        asOptionalString(body.source),
+        asIsoTimestamp(body.timestamp),
+        asOptionalString(request.headers.get('user-agent')),
+        asOptionalString(request.headers.get('referer')),
+      ]
+    );
 
     return NextResponse.json(
       { success: true, message: 'Resume download tracked' },
