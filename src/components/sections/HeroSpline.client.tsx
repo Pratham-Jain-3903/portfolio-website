@@ -1,6 +1,6 @@
 'use client';
 
-import Spline from '@splinetool/react-spline/next';
+import Spline from '@splinetool/react-spline';
 
 const heroScene = 'https://prod.spline.design/RYL-GG3FKx6g5eEK/scene.splinecode';
 
