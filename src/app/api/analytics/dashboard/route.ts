@@ -2,7 +2,24 @@ import { NextResponse } from 'next/server';
 
 import { ensureAnalyticsSchema, getPool } from '@/lib/db';
 
+const EMPTY_DASHBOARD = {
+  totalSessions: 0,
+  returningVisitors: 0,
+  bounceRate: 0,
+  deepEngagementRate: 0,
+  avgPageLoadTime: 0,
+  sectionPopularity: [] as { section: string; avgTimeMs: number; visits: number }[],
+  topInteractions: [] as { element: string; count: number }[],
+  feedbackSummary: { positive: 0, negative: 0, comments: [] as string[] },
+  themePreferences: { light: 0, dark: 0 },
+  totalPageViews: 0,
+} as const;
+
 export async function GET() {
+  // App Hosting preview / fresh env may not have DATABASE_URL — don't 500 the dashboard.
+  if (!process.env.DATABASE_URL) {
+    return NextResponse.json({ ...EMPTY_DASHBOARD, _unavailable: 'analytics_disabled_missing_DATABASE_URL' }, { status: 200 });
+  }
   try {
     await ensureAnalyticsSchema();
     const pool = getPool();
@@ -132,13 +149,8 @@ export async function GET() {
 
     return NextResponse.json(dashboardData, { status: 200 });
   } catch (error) {
-    // Log error details server-side only (not exposed to client)
     console.error('[Analytics] Error fetching dashboard data:', error instanceof Error ? error.message : 'Unknown error');
-    return NextResponse.json(
-      {
-        error: 'Failed to fetch dashboard data',
-      },
-      { status: 500 }
-    );
+    // Degrade gracefully on hosted envs (Neon unreachable, missing tables, etc.) — never 500 the page.
+    return NextResponse.json({ ...EMPTY_DASHBOARD, _error: error instanceof Error ? error.message : 'Unknown error' }, { status: 200 });
   }
 }
