@@ -3,14 +3,15 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Github, Linkedin, Mail, MapPin, Phone, User } from 'lucide-react';
 import Link from 'next/link';
+import { contactDetails, type ContactIconKey } from '@/data/profile';
 
-const contactDetails = [
-  { icon: Phone, label: 'Phone', value: '+91-9301990411', href: 'tel:+919301990411' },
-  { icon: Mail, label: 'Email', value: 'Prathamjain3903@gmail.com', href: 'mailto:Prathamjain3903@gmail.com' },
-  { icon: MapPin, label: 'Location', value: 'Gurugram, India' },
-  { icon: Github, label: 'GitHub', value: 'Pratham-Jain-3903', href: 'https://github.com/Pratham-Jain-3903', target: '_blank' },
-  { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/pratham-jain-56682620a/', href: 'https://www.linkedin.com/in/pratham-jain-56682620a/', target: '_blank' },
-];
+const contactIcons: Record<ContactIconKey, React.ElementType> = {
+  phone: Phone,
+  email: Mail,
+  location: MapPin,
+  github: Github,
+  linkedin: Linkedin,
+};
 
 const ContactInfo: React.FC = () => {
   return (
@@ -21,9 +22,12 @@ const ContactInfo: React.FC = () => {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6 pt-2">
-        {contactDetails.map((detail) => (
+        {contactDetails.map((detail) => {
+          const Icon = contactIcons[detail.icon];
+
+          return (
           <div key={detail.label} className="flex items-start space-x-4">
-            <detail.icon className="h-6 w-6 text-accent mt-1" />
+            <Icon className="h-6 w-6 text-accent mt-1" />
             <div>
               <p className="text-md font-semibold text-muted-foreground">{detail.label}</p>
               {detail.href ? (
@@ -35,7 +39,8 @@ const ContactInfo: React.FC = () => {
               )}
             </div>
           </div>
-        ))}
+          );
+        })}
       </CardContent>
     </Card>
   );

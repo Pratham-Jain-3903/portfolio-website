@@ -15,6 +15,9 @@ import Recommendations from '@/components/sections/Recommendations';
 import VolunteerExperience from '@/components/sections/VolunteerExperience';
 import Education from '@/components/sections/Education';
 import LinkedInPostCarousel from '@/components/sections/LinkedInPostCarousel';
+import { linkedInPostUrls } from '@/data/writing';
+import ClassicPortfolio from '@/components/classic/ClassicPortfolio';
+import PortfolioShell from '@/components/PortfolioShell.client';
 import ScrollToTopButton from '@/components/common/ScrollToTopButton';
 import Footer from '@/components/common/Footer';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -24,6 +27,7 @@ import FeedbackWidget from '@/components/common/FeedbackWidget';
 import DetailSidebar from '@/components/common/DetailSidebar';
 import { SectionCard } from '@/components/common/SectionCard';
 import { cn } from '@/lib/utils';
+import { parsePortfolioQuery } from '@/lib/explore/modes';
 
 // Loading skeletons for better UX during component loading
 const SectionSkeleton = () => (
@@ -207,12 +211,7 @@ function HomeContent() {
                 <Section id="linkedin-posts">
                   <div className="space-y-4">
                     <h2 className="text-2xl md:text-3xl font-bold text-foreground">LinkedIn Posts</h2>
-                    <LinkedInPostCarousel postUrls={[
-                      "https://www.linkedin.com/posts/iiitraichur_iiitraichur-iiitr-iiitr-activity-7274800882293092352-2oK6?utm_source=share&utm_medium=member_desktop&rcm=ACoAADUozZ4BLGo-pv19AgZuZXbWiYOrD-5x_R0",
-                      "https://www.linkedin.com/posts/pratham-jain-56682620a_amazonmlchallenge-machinelearning-visionlanguage-activity-7243848942486966272-BL4d?utm_source=share&utm_medium=member_desktop&rcm=ACoAADUozZ4BLGo-pv19AgZuZXbWiYOrD-5x_R0",
-                      "https://www.linkedin.com/posts/pratham-jain-56682620a_google-genaiexchange-googlecloud-activity-7317445686927544321-mb2B?utm_source=share&utm_medium=member_desktop&rcm=ACoAADUozZ4BLGo-pv19AgZuZXbWiYOrD-5x_R0",
-                      "https://www.linkedin.com/posts/pratham-jain-56682620a_from-classrooms-to-real-world-impact-activity-7295481131729117184-6egB?utm_source=share&utm_medium=member_desktop&rcm=ACoAADUozZ4BLGo-pv19AgZuZXbWiYOrD-5x_R0"
-                    ]} />
+                    <LinkedInPostCarousel postUrls={linkedInPostUrls} />
                   </div>
                 </Section>
               </SectionCard>
@@ -237,9 +236,15 @@ function HomeContent() {
 }
 
 export default function Home() {
+  const query = parsePortfolioQuery(useSearchParams());
+
   return (
-    <Suspense fallback={<SectionSkeleton />}>
-      <HomeContent />
-    </Suspense>
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <Suspense fallback={<ClassicPortfolio />}>
+        <PortfolioShell />
+      </Suspense>
+      {query.mode === 'classic' && <><Footer /><ScrollToTopButton /></>}
+    </div>
   );
 }

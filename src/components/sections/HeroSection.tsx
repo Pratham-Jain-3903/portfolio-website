@@ -2,10 +2,14 @@
 
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import Spline from '@splinetool/react-spline';
+import dynamic from 'next/dynamic';
 import { ChevronDownCircle } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useEffect, useState } from 'react';
+
+const HeroSpline = dynamic(() => import('@/components/sections/HeroSpline.client'), {
+  ssr: false,
+});
 
 const images = [
   '/images/hero/download.jpg',
@@ -70,12 +74,7 @@ export default function HeroSection() {
           <div className="absolute inset-0 bg-black/60" /> {/* Moved overlay outside the loop */}
         </div>
 
-        <div className="absolute inset-0 z-10">
-          <Spline
-            scene="https://prod.spline.design/RYL-GG3FKx6g5eEK/scene.splinecode"
-            className="h-full w-full"
-          />
-        </div>
+        <HeroSpline />
 
         {/* Main content */}
         <div className="relative z-20 flex flex-col items-center justify-center text-center p-4 md:p-8 mt-20 pointer-events-none">
@@ -84,7 +83,10 @@ export default function HeroSection() {
             <span className="block text-accent animate-fade-in-up animation-delay-200">JAIN</span>
           </h1>
           <p className="doto-font mt-4 md:mt-6 text-xl sm:text-2xl md:text-3xl text-white/80 max-w-3xl drop-shadow-md">
-            Data Engineer & Machine Learning Engineer
+            Quantitative Data Engineer
+          </p>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-white/70 sm:text-base">
+            Building reliable market-data, research, and risk systems.
           </p>
 
           <Tooltip>

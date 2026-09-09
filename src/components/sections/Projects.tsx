@@ -5,157 +5,17 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Briefcase, Calendar, Users, ChevronDown, ChevronUp, ExternalLink, Trophy, Zap, PanelRightOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import {
+  getPrimaryProjectLink,
+  getProjectDescription,
+  projects,
+  type Project,
+} from '@/data/projects';
 
 // Constants
 const COLLAPSED_HEIGHT = 180;
 const ANIMATION_DURATION = 140;
 const ANIMATION_EASING = 'cubic-bezier(0, 0, 0.2, 1)';
-
-interface ProjectEntry {
-  id: string;
-  title: string;
-  shortTitle: string;
-  duration: string;
-  outcome: string;
-  techStack: string[];
-  metrics?: string[];
-  description: string;
-  otherCreators?: string[];
-  award?: string;
-  link?: string;
-}
-
-const projectData: ProjectEntry[] = [
-  {
-    id: 'solarwise',
-    title: 'SolarWise: Dynamic AI-Driven Energy Management Cloud Solutions',
-    shortTitle: 'SolarWise',
-    duration: 'Oct 2024',
-    outcome: 'Winner - Luminous TechnoX Hackathon 2024',
-    award: '🏆 1st Place',
-    techStack: ['AWS IoT', 'Kafka', 'DynamoDB', 'LSTM', 'Grafana', 'PostgreSQL'],
-    metrics: ['95% anomaly detection', '99.5% uptime', '92% forecast accuracy'],
-    description: 'IoT-powered platform for real-time monitoring of solar power generation, battery levels, and energy savings with Time-of-Use tariff integration.\n\n• AI-powered predictions using Linear Regression (R² > 90%) and LSTM models\n• Smart scheduling via Mixed-Integer Linear Programming (MILP)\n• Z-Score-based anomaly detection with 95%+ precision\n• Real-time dashboards via Grafana integrated with PostgreSQL',
-    otherCreators: ['Krishna Faujdar', 'Manvendra Singh', 'Pavan Kumar'],
-  },
-  {
-    id: 'smart-grocery-scanner',
-    title: 'Flipkart Grid 6.0 - Smart Grocery Scanner Application',
-    shortTitle: 'Smart Grocery Scanner',
-    duration: 'Sep 2024',
-    outcome: 'Computer vision system for warehouse automation',
-    techStack: ['Computer Vision', 'OCR', 'CustomTkinter', 'Edge AI', 'Cloud Analytics'],
-    metrics: ['Real-time detection', 'Freshness assessment', 'Hybrid cloud-edge'],
-    description: '• Automated scanning and recognition using computer vision\n• One-click interface for warehouse staff\n• Real-time alerts for incorrect, missing, or expired products\n• AI-powered freshness detection for perishables\n• Hybrid cloud-edge model for efficient processing',
-    otherCreators: ['Ashutosh Singh', 'Prathamesh Patil'],
-  },
-  {
-    id: 'hvac-optimization',
-    title: 'AI-Driven HVAC Efficiency Optimization',
-    shortTitle: 'HVAC Optimization',
-    duration: 'Mar 2024',
-    outcome: 'Research project with Bosch Global Software Technologies',
-    techStack: ['Apache Spark', 'Kafka', 'IoT', 'Python', 'Data Pipelines'],
-    metrics: ['30 days continuous processing', 'Real-time insights'],
-    description: '• Designed real-time data pipelines for IoT energy optimization\n• Engineered scalable ingestion frameworks processing continuous IoT signals\n• Utilized distributed computing (Spark, Kafka) for large-scale data\n• Advanced transformation techniques for AI-driven decision-making',
-    otherCreators: ['Anandan Arumugam', 'Vipin Pulikkal'],
-  },
-  {
-    id: 'cancer-diagnosis-ai',
-    title: 'Breast Cancer Diagnosis Framework',
-    shortTitle: 'Cancer Diagnosis AI',
-    duration: 'Jan 2024',
-    outcome: '97% diagnostic accuracy on FNAC data',
-    techStack: ['PyCaret', 'Grad-CAM', 'SHAP', 'Streamlit', 'Docker', 'W&B'],
-    metrics: ['97% accuracy', '80% time reduction', 'Real-time validation'],
-    description: '• Open-source AI framework leveraging pathology, radiology, and medical history\n• First-party medical datasets curated with medical professionals\n• Multiple AI models for detecting masses, lesions, calcifications\n• SHAP for model interpretability\n• Deployed at scale using Streamlit and Docker',
-    otherCreators: ['Jahnvi Tiwari', 'Shruti Jaiswal'],
-  },
-  {
-    id: 'msme-credit-platform',
-    title: 'GenAI-Powered Credit Access Platform for MSMEs',
-    shortTitle: 'MSME Credit Platform',
-    duration: 'Jan 2024',
-    outcome: 'AI-driven financial assessment for small businesses',
-    techStack: ['GenAI', 'OCEN', 'Financial APIs', 'ML'],
-    description: '• AI algorithms for creditworthiness evaluation\n• Seamless integration with OCEN for loan processing\n• Diverse financing options from multiple sources\n• Financial literacy tools for MSMEs',
-  },
-  {
-    id: 'trendloop',
-    title: 'TrendLoop - Sustainable Fashion Platform',
-    shortTitle: 'TrendLoop',
-    duration: 'May - Jun 2024',
-    outcome: 'AI-powered sustainable fashion marketplace',
-    techStack: ['Flutter', 'Firebase', 'TensorFlow', 'FLUX.1', 'Python'],
-    description: '• Personalized outfit recommendations via AI\n• Virtual clothing try-ons with 3D garment rendering\n• Circular fashion marketplace for pre-owned clothing\n• Support for ethical and eco-friendly production',
-    otherCreators: ['Rushikesh Muneshwar'],
-  },
-  {
-    id: 'pydorky',
-    title: 'Pydorky — Practical Artifact Storage for Teams',
-    shortTitle: 'Pydorky',
-    duration: 'Dec 2025 - Present',
-    outcome: 'Minimal, auditable artifact storage; npm package available',
-    techStack: ['GitHub Actions', 'Python', 'AWS', 'Azure Data Lake', 'GCP', 'Express.js'],
-    description: "I grew tired of important artifacts being scattered across chat apps (Teams, Slack), quick paste services, and personal drives. Pydorky provides a minimal, auditable, and automated alternative that:\n\n1. keeps artifacts out of VCS while enabling reproducible sharing\n2. integrates with existing cloud storage and IAM controls\n3. provides lightweight metadata, idempotency, and streaming-friendly APIs\n4. offers a Python client for data teams (Parquet/pyarrow integration) and thin clients for other languages\n\nRepository: https://github.com/Pratham-Jain-3903/pydorky\nPackage: https://www.npmjs.com/package/pydorky",
-    link: 'https://www.npmjs.com/package/pydorky',
-    otherCreators: ['Various contributors'],
-  },
-  {
-    id: 'fin-stream-dashboard',
-    title: 'Lightweight Financial Streaming Dashboard for Trading Strategies',
-    shortTitle: 'Financial Streaming Dashboard',
-    duration: 'Nov 2025 - Present',
-    outcome: 'Kafka + DuckDB dashboard for comparing market data and news',
-    techStack: ['GitHub Actions', 'Docker', 'Data Warehousing', 'Applied Machine Learning', 'Apache Kafka', 'DuckDB', 'PyCaret', 'Qlib'],
-    description: "Built a Kafka + DuckDB polling-based dashboard for comparing stock prices with news across publishers. Adding Qlib next for basic quant research and backtesting.",
-  },
-  {
-    id: 'agentic-call-handler',
-    title: 'Automated Agentic AI Call handler/ Integrated Chatbot',
-    shortTitle: 'Agentic Call Handler',
-    duration: 'Sep 2025 - Present',
-    outcome: 'AI-driven cloud system deployed for Luminous Power Technologies with measurable latency and cost improvements',
-    techStack: ['Next.js', 'AKS', 'Redis', 'Embeddings', 'LLMs', 'WebSockets', 'Redis Streams'],
-    metrics: ['78% lower query latency', '30% cost savings', '7% higher satisfaction', '88% faster responses for 10k calls daily'],
-    description: "Engineered AI-driven cloud systems by orchestrating adaptive agents, LLMs, and embedding models for IoT data analysis and customer queries; deployed on Next.js PWA + AKS microservices with Redis caching, idempotent workflows, and real-time APIs. Implemented auto-termination of expensive bidirectional WebSocket channels to prevent idle sessions, and added Mermaid-backed visualizers and an adhoc query tool for premium users. Also integrated feedback-intelligence workflows to surface product insights.",
-    otherCreators: ['Luminous Power Technologies (P) Ltd'],
-  },
-  {
-    id: 'tcp-congestion-control',
-    title: 'TCP Congestion Control - CUBIC-FIT Implementation in ns-3 C++',
-    shortTitle: 'TCP Congestion Control',
-    duration: '2025',
-    outcome: "Near-perfect fairness (Jain's index 0.99999) in multi-flow tests",
-    techStack: ['C++', 'ns-3', 'Python', 'Networking'],
-    metrics: ["Jain's index 0.99999", '9.79 Mbps aggregate throughput', '>98% bottleneck utilisation'],
-    description: "Implemented CUBIC-FIT as a C++ subclass of TCP CUBIC in ns-3.47, extending the congestion module with dynamic parameter scaling to model multiple competing flows within a single connection.\n\n• Achieved near-perfect fairness in multi-flow tests, outperforming vanilla CUBIC.\n• Delivered 9.79 Mbps aggregate throughput at 58.9 ms delay (2-flow scenario).\n• Automated measurement and visualisation pipeline in Python to generate comparative graphs.",
-    link: 'https://github.com/Pratham-Jain-3903/ns3-tcp-cubic-fit',
-  },
-  {
-    id: 'project-mercury',
-    title: 'Project Mercury - Real-Time News Sentiment Pipeline',
-    shortTitle: 'Project Mercury',
-    duration: '2025',
-    outcome: 'End-to-end data pipeline ingesting 13,000+ financial news articles',
-    techStack: ['Kafka', 'PostgreSQL', 'Docker', 'Python', 'Plotly Dash'],
-    metrics: ['sub-second ingest latency', '200+ parameter configurations', '34 risk and return metrics'],
-    description: "Built end-to-end data pipeline ingesting 13,000+ financial news articles for 10 equity symbols with sub-second ingest latency.\n\n• Engineered a backtesting engine with configurable transaction costs, stop-loss/take-profit, and variable hold periods.\n• Systematically explored 200+ parameter configurations per symbol.\n• Computed 34 risk and return metrics (Sharpe, Sortino, Calmar, max drawdown, VaR) and built a Plotly Dash dashboard for live parameter tuning.",
-    link: 'https://github.com/Pratham-Jain-3903/streamprocessing-kafka-finlight-news-dashboard',
-  },
-  {
-    id: 'smart-retail-scanner-pro',
-    title: 'Smart Retail Scanner Pro',
-    shortTitle: 'Smart Retail Scanner Pro',
-    duration: '2025',
-    outcome: 'Flipkart Grid 6.0 (National Level 2 Finalist)',
-    award: 'National Level 2 Finalist',
-    techStack: ['Edge Computing', 'Computer Vision', 'MobileNetSSD', 'SQLite'],
-    metrics: ['<2s end-to-end latency', 'F1 0.832'],
-    description: "Designed hybrid edge-cloud architecture for real-time product detection.\n\n• Edge inference achieved <2s end-to-end latency on Jetson Nano with 4 simultaneous feeds (MobileNetSSD, F1 0.832).\n• Implemented local SQLite storage with cloud aggregation under strict latency constraints.",
-    link: 'https://github.com/Pratham-Jain-3903/Flipkart_Grid_6.0',
-  },
-];
 
 // Analytics helper
 function fireAnalyticsEvent(event: string, itemId: string, source: string) {
@@ -166,7 +26,7 @@ function fireAnalyticsEvent(event: string, itemId: string, source: string) {
 }
 
 interface ProjectCardProps {
-  project: ProjectEntry;
+  project: Project;
   isExpanded: boolean;
   onToggleExpand: () => void;
   onOpenSidebar: () => void;
@@ -176,6 +36,8 @@ interface ProjectCardProps {
 function ProjectCard({ project, isExpanded, onToggleExpand, onOpenSidebar, prefersReducedMotion }: ProjectCardProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const [maxHeight, setMaxHeight] = useState<string>(`${COLLAPSED_HEIGHT}px`);
+  const description = getProjectDescription(project);
+  const projectLink = getPrimaryProjectLink(project);
 
   // Update maxHeight for animation
   useEffect(() => {
@@ -245,7 +107,7 @@ function ProjectCard({ project, isExpanded, onToggleExpand, onOpenSidebar, prefe
 
           {/* Tech Stack Badges - max 4 in collapsed */}
           <div className="mt-3 flex flex-wrap gap-1.5">
-            {project.techStack.slice(0, isExpanded ? undefined : 4).map((tech) => (
+            {project.stack.slice(0, isExpanded ? undefined : 4).map((tech) => (
               <Badge
                 key={tech}
                 variant="secondary"
@@ -255,9 +117,9 @@ function ProjectCard({ project, isExpanded, onToggleExpand, onOpenSidebar, prefe
                 {tech}
               </Badge>
             ))}
-            {!isExpanded && project.techStack.length > 4 && (
+            {!isExpanded && project.stack.length > 4 && (
               <Badge variant="outline" className="text-xs px-2 py-0.5">
-                +{project.techStack.length - 4}
+                +{project.stack.length - 4}
               </Badge>
             )}
           </div>
@@ -268,7 +130,7 @@ function ProjectCard({ project, isExpanded, onToggleExpand, onOpenSidebar, prefe
               {project.metrics.slice(0, isExpanded ? undefined : 2).map((metric) => (
                 <span
                   key={metric}
-                  className="text-xs text-primary/80 flex items-center gap-1"
+                  className="text-xs text-primary flex items-center gap-1"
                 >
                   <Zap className="h-3 w-3" />
                   {metric}
@@ -287,19 +149,19 @@ function ProjectCard({ project, isExpanded, onToggleExpand, onOpenSidebar, prefe
                 Details
               </h4>
               <p className="text-sm text-foreground/90 whitespace-pre-line leading-relaxed">
-                {project.description}
+                {description}
               </p>
 
-              {project.otherCreators && project.otherCreators.length > 0 && (
+              {project.collaborators.length > 0 && (
                 <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground">
                   <Users className="h-3 w-3" />
-                  <span>Team: {project.otherCreators.join(', ')}</span>
+                  <span>Team: {project.collaborators.join(', ')}</span>
                 </div>
               )}
 
-              {project.link && (
+              {projectLink && (
                 <a
-                  href={project.link}
+                  href={projectLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-3 inline-flex items-center gap-1 text-xs text-primary hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
@@ -405,7 +267,7 @@ const Projects: React.FC<ProjectsProps> = ({ onOpenSidebar }) => {
             "grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
           )}
         >
-          {projectData.map((project) => (
+          {projects.map((project) => (
             <ProjectCard
               key={project.id}
               project={project}
@@ -422,5 +284,3 @@ const Projects: React.FC<ProjectsProps> = ({ onOpenSidebar }) => {
 };
 
 export default Projects;
-export { projectData };
-export type { ProjectEntry };

@@ -73,9 +73,11 @@ export async function GET() {
             SELECT
               COUNT(*) FILTER (WHERE sentiment = 'positive')::int AS positive,
               COUNT(*) FILTER (WHERE sentiment = 'negative')::int AS negative,
-              ARRAY_REMOVE(
-                ARRAY_AGG(message ORDER BY event_timestamp DESC),
-                NULL
+              (
+                ARRAY_REMOVE(
+                  ARRAY_AGG(message ORDER BY event_timestamp DESC),
+                  NULL
+                )
               )[1:5] AS comments
             FROM analytics_feedback
           `

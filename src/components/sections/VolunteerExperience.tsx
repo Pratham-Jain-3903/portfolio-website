@@ -3,68 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users, Heart, BookOpen, Lightbulb } from 'lucide-react'; // Added relevant icons
 import { Badge } from '@/components/ui/badge'; // Import Badge component
 import Image from 'next/image';
-
-interface VolunteerExperienceEntry {
-  role: string;
-  company: string;
-  duration: string;
-  category?: string; // Optional category field
-  description?: string; // Optional description field
-  logoUrl?: string;
-  location?: string;
-  skills?: string[];
-}
-
-const volunteerExperienceData: VolunteerExperienceEntry[] = [
-  {
-    role: 'Database Developer',
-    company: 'Raichur Institute of Medical Sciences',
-    duration: 'Aug 2024 - Present 10 months',
-    category: 'Science and Technology',
-    description: 'Identified and Addressed Key Challenges: Discovered that the Pathology Department at RIMS relied on physical storage for medical records, leading to difficulties in searching and accessing relevant slides due to the high cost and inefficiency of physical archives. Developed Digital Solution: Designed and implemented a comprehensive digital archive system using MongoDB and Streamlit. This solution was aimed at transitioning the pathology department from expensive physical storage to a…Show more',
-    logoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6i3ntEYZoC5TD0DDAUM43iIKY0SbKU91ZJA&s', // Placeholder logo
-  },
-  {
-    role: 'Student Volunteer',
-    company: 'National Service Scheme',
-    duration: 'Dec 2021 - Present 3 years 6 months',
-    logoUrl: 'https://students.iiitr.ac.in/assets/images/club/nss-inverted.png', // Placeholder logo
-  },
-  {
-    role: 'Head of Public Relations',
-    company: 'Indian Institute of Information Technology, Raichur',
-    duration: 'Sep 2022 - Present 2 years 9 months',
-    category: 'Education',
-    logoUrl: 'https://students.iiitr.ac.in/assets/images/logo/logo_white.png', // Placeholder logo
-  },
-  {
-    role: 'Student Mentor',
-    company: 'E-Cell, IIIT Raichur',
-    duration: 'Nov 2024 - Present 7 months',
-    category: 'Economic Empowerment',
-    logoUrl: 'https://students.iiitr.ac.in/assets/images/club/E_cell_logo.jpg', // Placeholder logo
-  },
-  {
-    role: 'Member',
-    company: 'Epoch, IIT Hyderabad',
-    duration: 'Jan 2024 - Apr 2025 · 1 yr 4 mos',
-    category: 'Clubs',
-    location: 'Hyderabad, Telangana, India · Hybrid',
-    description: 'Participated in data science workshops and collaborative projects focusing on applied machine learning and data analysis.',
-    skills: ['Data Science', 'Applied Machine Learning', 'Python'],
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a3/IIT_Hyderabad_Logo.svg',
-  },
-  {
-    role: 'Member',
-    company: 'Lambda, IIT Hyderabad',
-    duration: 'Jan 2024 - Apr 2025 · 1 yr 4 mos',
-    category: 'Clubs',
-    location: 'Hyderabad, Telangana, India · Hybrid',
-    description: 'Contributed to community learning sessions and project collaborations around data science and ML topics.',
-    skills: ['Data Science', 'Applied Machine Learning'],
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a3/IIT_Hyderabad_Logo.svg',
-  },
-];
+import { volunteerExperienceEntries } from '@/data/volunteer-experience';
 
 const VolunteerExperience: React.FC = () => {
   return (
@@ -79,9 +18,9 @@ const VolunteerExperience: React.FC = () => {
         {/* <p className="text-muted-foreground mb-8">Highlight your contributions and impact through volunteer work.</p> */}
 
         {/* Map over volunteer entries */}
-        {volunteerExperienceData.map((volunteer, index) => (
+        {volunteerExperienceEntries.map((volunteer) => (
           <div
-            key={index}
+            key={volunteer.id}
             className="p-4 border border-border/20 bg-background/10 backdrop-blur-sm rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
           >
              <div className="flex items-start sm:items-center mb-3 flex-col sm:flex-row">

@@ -7,7 +7,11 @@ import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
-import { projectData, type ProjectEntry } from '@/components/sections/Projects';
+import {
+  getPrimaryProjectLink,
+  getProjectById,
+  getProjectDescription,
+} from '@/data/projects';
 
 interface DetailSidebarProps {
   projectId: string | null;
@@ -26,9 +30,9 @@ export default function DetailSidebar({ projectId, onClose }: DetailSidebarProps
   const sidebarRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-  const project = projectId 
-    ? projectData.find(p => p.id === projectId) 
-    : null;
+  const project = projectId ? getProjectById(projectId) : null;
+  const description = project ? getProjectDescription(project) : '';
+  const projectLink = project ? getPrimaryProjectLink(project) : undefined;
 
   // Update URL when sidebar opens/closes
   useEffect(() => {
@@ -184,7 +188,7 @@ export default function DetailSidebar({ projectId, onClose }: DetailSidebarProps
                   Description
                 </h3>
                 <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
-                  {project.description}
+                  {description}
                 </p>
               </div>
 
@@ -219,7 +223,7 @@ export default function DetailSidebar({ projectId, onClose }: DetailSidebarProps
                   Tech Stack
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {project.techStack.map((tech) => (
+                  {project.stack.map((tech) => (
                     <Badge
                       key={tech}
                       variant="secondary"
@@ -232,7 +236,7 @@ export default function DetailSidebar({ projectId, onClose }: DetailSidebarProps
               </div>
 
               {/* Team */}
-              {project.otherCreators && project.otherCreators.length > 0 && (
+              {project.collaborators.length > 0 && (
                 <>
                   <Separator />
                   <div>
@@ -241,18 +245,18 @@ export default function DetailSidebar({ projectId, onClose }: DetailSidebarProps
                     </h3>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <Users className="h-4 w-4 shrink-0" />
-                      <span>{project.otherCreators.join(', ')}</span>
+                      <span>{project.collaborators.join(', ')}</span>
                     </div>
                   </div>
                 </>
               )}
 
               {/* External link */}
-              {project.link && (
+              {projectLink && (
                 <>
                   <Separator />
                   <a
-                    href={project.link}
+                    href={projectLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(

@@ -105,6 +105,7 @@ export default function FilterBar({ activeFilter, onFilterChange }: FilterBarPro
             <button
               key={filter.id}
               onClick={() => handleFilterClick(filter, index)}
+              aria-label={filter.label}
               aria-pressed={isActive}
               tabIndex={index === focusedIndex ? 0 : -1}
               className={cn(
