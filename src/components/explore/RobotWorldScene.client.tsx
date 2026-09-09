@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-const Spline = dynamic(() => import('@splinetool/react-spline'), { ssr: false });
+const Spline = dynamic(() => import('@splinetool/react-spline/next'), { ssr: false });
 
 const heroScene = 'https://prod.spline.design/RYL-GG3FKx6g5eEK/scene.splinecode';
 

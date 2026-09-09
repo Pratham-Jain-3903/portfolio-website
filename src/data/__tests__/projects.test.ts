@@ -20,7 +20,7 @@ describe('project content', () => {
       { id: 'project-mercury', featuredRank: 1 },
       { id: 'pydorky', featuredRank: 2 },
       { id: 'fin-stream-dashboard', featuredRank: 3 },
-      { id: 'solarwise', featuredRank: 4 },
+      { id: 'fno-analytics', featuredRank: 4 },
     ]);
   });
 
@@ -36,7 +36,7 @@ describe('project content', () => {
     const project = getProjectById('project-mercury');
 
     expect(project).toBeDefined();
-    expect(getProjectDescription(project!)).toContain('• Engineered a backtesting engine');
+    expect(getProjectDescription(project!)).toContain('• Evaluated news signals with configurable transaction costs');
     expect(getPrimaryProjectLink(project!)).toBe(
       'https://github.com/Pratham-Jain-3903/streamprocessing-kafka-finlight-news-dashboard'
     );

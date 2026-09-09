@@ -10,16 +10,14 @@ describe('skill content', () => {
 
   it('preserves ordered non-empty groups', () => {
     expect(skillGroups.map(({ label }) => label)).toEqual([
-      'Languages',
-      'Frameworks',
-      'Cloud',
-      'DevOps',
-      'Data Engineering',
-      'Database Systems',
-      'Foundations',
-      'Advanced Topics',
-      'Visualisation',
-      'Additional Skills',
+      'Programming and Querying',
+      'Market and Data Pipelines',
+      'Analytical Storage',
+      'Research and Evaluation',
+      'Cloud and Compute',
+      'Data Platform Practices',
+      'Analytics and Monitoring',
+      'Application Delivery',
     ]);
     expect(skillGroups.every(({ skills }) => skills.length > 0)).toBe(true);
   });
