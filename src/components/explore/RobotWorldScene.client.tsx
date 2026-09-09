@@ -1,10 +1,8 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-
-const Spline = dynamic(() => import('@splinetool/react-spline'), { ssr: false });
+import { Application } from '@splinetool/runtime';
 
 const heroScene = 'https://prod.spline.design/RYL-GG3FKx6g5eEK/scene.splinecode';
 
@@ -204,22 +202,37 @@ export default function RobotWorldScene({ stations, activeStation, robotPosition
     };
   }, [activeStation, onSelectStation, stations]);
 
+  const hudCanvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = hudCanvasRef.current;
+    if (!canvas) return;
+    let app: Application | null = null;
+    let mounted = true;
+    (async () => {
+      try {
+        app = new Application(canvas);
+        await app.load(heroScene);
+        if (!mounted) app.dispose?.();
+      } catch (error) {
+        console.error('[RobotHUD] Failed to load Spline scene:', error);
+      }
+    })();
+    return () => {
+      mounted = false;
+      try {
+        app?.dispose?.();
+      } catch {
+        // ignore
+      }
+    };
+  }, []);
+
   return (
     <div className="absolute inset-0">
       <canvas ref={canvasRef} className="absolute inset-0 block h-full w-full touch-none" aria-label="Interactive Three.js block world" />
       <div data-robot-spline className="pointer-events-none absolute bottom-0 right-2 h-48 w-48 overflow-hidden opacity-100 sm:h-64 sm:w-64" aria-hidden="true">
-        <Spline
-          scene={heroScene}
-          className="h-full w-full"
-          onLoad={(app) => {
-            try {
-              const anyApp = app as unknown as { _onFrame?: unknown };
-              if (!anyApp || typeof anyApp._onFrame !== 'function') return;
-            } catch {
-              // decorative HUD — never break robot world
-            }
-          }}
-        />
+        <canvas ref={hudCanvasRef} className="h-full w-full" />
       </div>
     </div>
   );

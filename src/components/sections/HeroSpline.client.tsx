@@ -1,26 +1,41 @@
 'use client';
 
-import Spline from '@splinetool/react-spline';
+import { useEffect, useRef } from 'react';
+import { Application } from '@splinetool/runtime';
 
 const heroScene = 'https://prod.spline.design/RYL-GG3FKx6g5eEK/scene.splinecode';
 
 export default function HeroSpline() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    let app: Application | null = null;
+    let mounted = true;
+    // Decorative hero — must never crash the page if Spline fails (the `position` onFrame flood).
+    (async () => {
+      try {
+        app = new Application(canvas);
+        await app.load(heroScene);
+        if (!mounted) app.dispose?.();
+      } catch (error) {
+        console.error('[HeroSpline] Failed to load scene:', error);
+      }
+    })();
+    return () => {
+      mounted = false;
+      try {
+        app?.dispose?.();
+      } catch {
+        // ignore
+      }
+    };
+  }, []);
+
   return (
     <div className="absolute inset-0 z-10" aria-hidden="true">
-      <Spline
-        scene={heroScene}
-        className="h-full w-full"
-        onLoad={(app) => {
-          // Defensive: prod Spline + Turbopack can deliver a disposed/error app
-          // that later throws `reading 'position'` on every onFrame.
-          try {
-            const anyApp = app as unknown as { _onFrame?: unknown };
-            if (!anyApp || typeof anyApp._onFrame !== 'function') return;
-          } catch {
-            // swallow — hero is decorative; never break the page
-          }
-        }}
-      />
+      <canvas ref={canvasRef} className="h-full w-full" />
     </div>
   );
 }
