@@ -208,7 +208,18 @@ export default function RobotWorldScene({ stations, activeStation, robotPosition
     <div className="absolute inset-0">
       <canvas ref={canvasRef} className="absolute inset-0 block h-full w-full touch-none" aria-label="Interactive Three.js block world" />
       <div data-robot-spline className="pointer-events-none absolute bottom-0 right-2 h-48 w-48 overflow-hidden opacity-100 sm:h-64 sm:w-64" aria-hidden="true">
-        <Spline scene={heroScene} className="h-full w-full" />
+        <Spline
+          scene={heroScene}
+          className="h-full w-full"
+          onLoad={(app) => {
+            try {
+              const anyApp = app as unknown as { _onFrame?: unknown };
+              if (!anyApp || typeof anyApp._onFrame !== 'function') return;
+            } catch {
+              // decorative HUD — never break robot world
+            }
+          }}
+        />
       </div>
     </div>
   );
