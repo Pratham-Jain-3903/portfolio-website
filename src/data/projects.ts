@@ -39,7 +39,7 @@ export const projects = [
     ],
     links: {
       github: 'https://github.com/Pratham-Jain-3903/susquehanna_prediction_markets_competitions',
-      live: 'https://prathamjain.in/notebook/sig-predictions-cup',
+      live: 'https://prathamjain.in/blog/sig-predictions-cup',
     },
     collaborators: [],
     featuredRank: 1,

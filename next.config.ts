@@ -1,6 +1,12 @@
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      { source: '/notebook', destination: '/blog', permanent: true },
+      { source: '/notebook/:slug', destination: '/blog/:slug', permanent: true },
+    ];
+  },
   typescript: {
     ignoreBuildErrors: true,
   },

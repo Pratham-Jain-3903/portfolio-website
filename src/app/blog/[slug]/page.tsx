@@ -7,19 +7,19 @@ import Navbar from '@/components/common/Navbar';
 import Footer from '@/components/common/Footer';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { getNotebookEntry, notebookEntries } from '@/data/notebook';
+import { getBlogPost, blogPosts } from '@/data/blog';
 
 type Params = { slug: string };
 
 export function generateStaticParams(): Params[] {
-  return notebookEntries.map(({ slug }) => ({ slug }));
+  return blogPosts.map(({ slug }) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
-  const entry = getNotebookEntry(slug);
+  const entry = getBlogPost(slug);
   if (!entry) return {};
-  const url = `/notebook/${entry.slug}`;
+  const url = `/blog/${entry.slug}`;
   return {
     title: entry.title,
     description: entry.summary,
@@ -30,23 +30,23 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
       title: entry.title,
       description: entry.summary,
       publishedTime: entry.date,
-      images: [{ url: entry.image.src, width: entry.image.width, height: entry.image.height, alt: entry.image.alt }],
+      images: entry.image ? [{ url: entry.image.src, width: entry.image.width, height: entry.image.height, alt: entry.image.alt }] : undefined,
     },
-    twitter: { card: 'summary_large_image', title: entry.title, description: entry.summary, images: [entry.image.src] },
+    twitter: { card: entry.image ? 'summary_large_image' : 'summary', title: entry.title, description: entry.summary, images: entry.image ? [entry.image.src] : undefined },
   };
 }
 
-export default async function NotebookEntryPage({ params }: { params: Promise<Params> }) {
+export default async function BlogPostPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const entry = getNotebookEntry(slug);
+  const entry = getBlogPost(slug);
   if (!entry) notFound();
 
   return (
     <>
       <Navbar />
       <article className="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-28 pb-12">
-        <Link href="/notebook" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-accent">
-          <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Notebook
+        <Link href="/blog" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-accent">
+          <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Blog
         </Link>
         <h1 className="mt-4 text-3xl sm:text-4xl font-bold font-heading text-foreground text-balance">{entry.title}</h1>
         <p className="mt-3 text-lg text-muted-foreground">{entry.summary}</p>
@@ -60,17 +60,19 @@ export default async function NotebookEntryPage({ params }: { params: Promise<Pa
           ))}
         </dl>
 
-        <figure className="mt-8 overflow-hidden rounded-xl border border-border/60 bg-white">
-          <Image
-            src={entry.image.src}
-            alt={entry.image.alt}
-            width={entry.image.width}
-            height={entry.image.height}
-            sizes="(min-width: 768px) 720px, 100vw"
-            className="h-auto w-full"
-            priority
-          />
-        </figure>
+        {entry.image ? (
+          <figure className="mt-8 overflow-hidden rounded-xl border border-border/60 bg-white">
+            <Image
+              src={entry.image.src}
+              alt={entry.image.alt}
+              width={entry.image.width}
+              height={entry.image.height}
+              sizes="(min-width: 768px) 720px, 100vw"
+              className="h-auto w-full"
+              priority
+            />
+          </figure>
+        ) : null}
 
         <div className="mt-8 space-y-5 leading-relaxed text-foreground/90">
           {entry.body.map((paragraph) => (
