@@ -17,10 +17,11 @@ describe('project content', () => {
 
   it('exposes the approved contiguous featured order', () => {
     expect(featuredProjects.map(({ id, featuredRank }) => ({ id, featuredRank }))).toEqual([
-      { id: 'project-mercury', featuredRank: 1 },
-      { id: 'pydorky', featuredRank: 2 },
-      { id: 'fin-stream-dashboard', featuredRank: 3 },
-      { id: 'fno-analytics', featuredRank: 4 },
+      { id: 'sig-predictions-cup', featuredRank: 1 },
+      { id: 'project-mercury', featuredRank: 2 },
+      { id: 'pydorky', featuredRank: 3 },
+      { id: 'fin-stream-dashboard', featuredRank: 4 },
+      { id: 'fno-analytics', featuredRank: 5 },
     ]);
   });
 

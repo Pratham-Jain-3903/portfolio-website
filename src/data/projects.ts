@@ -23,6 +23,28 @@ export interface Project {
 
 export const projects = [
   {
+    id: 'sig-predictions-cup',
+    title: "Automated Trading System for Susquehanna's Predictions Cup 2026",
+    shortTitle: 'SIG Predictions Cup',
+    duration: 'Oct 2026 - Nov 2026',
+    outcome: 'Risk-managed automated book in a play-money US midterms market (about 1,965 university players)',
+    stack: ['Python', 'REST & WebSocket APIs', 'Backtesting', 'Market Microstructure', 'pytest', 'tmux/cron'],
+    metrics: ['102k signals backtested', '5,650 orders', '278 tests', 'Decision log for every live change'],
+    problem: 'Built and ran an automated trading system for SIG\'s Predictions Cup, taking a stalled multi-agent prototype to a live, risk-managed book in one week. Backtests showed directional prediction lost to the spread, so capital went to structural and measured edges instead.',
+    impact: [
+      'Dropped a 102k-signal prediction pipeline after backtests showed at most 0.2 ticks of edge against 1.3 ticks of trading cost.',
+      'Traded a structural arbitrage: Democrat and Republican NO contracts whose bids summed above 1 (45% of snapshots) lock profit at settlement.',
+      'Ran a value book against a measured favourite-longshot bias (underdogs up to 12¢ too high versus Polymarket and Kalshi) with per-race, per-party and total loss caps.',
+      'Engineered for unattended operation: shared rate-limited API gateway, idempotent retries, kill switches, hourly risk checks and a numbered decision log.',
+    ],
+    links: {
+      github: 'https://github.com/Pratham-Jain-3903/susquehanna_prediction_markets_competitions',
+      live: 'https://prathamjain.in/notebook/sig-predictions-cup',
+    },
+    collaborators: [],
+    featuredRank: 1,
+  },
+  {
     id: 'solarwise',
     title: 'SolarWise: Dynamic AI-Driven Energy Management Cloud Solutions',
     shortTitle: 'SolarWise',
@@ -154,7 +176,7 @@ export const projects = [
       package: 'https://www.npmjs.com/package/pydorky',
     },
     collaborators: ['Various contributors'],
-    featuredRank: 2,
+    featuredRank: 3,
   },
   {
     id: 'fin-stream-dashboard',
@@ -170,7 +192,7 @@ export const projects = [
       github: 'https://github.com/Pratham-Jain-3903/streamprocessing-kafka-finlight-news-dashboard',
     },
     collaborators: [],
-    featuredRank: 3,
+    featuredRank: 4,
   },
   {
     id: 'agentic-call-handler',
@@ -222,7 +244,7 @@ export const projects = [
       github: 'https://github.com/Pratham-Jain-3903/streamprocessing-kafka-finlight-news-dashboard',
     },
     collaborators: [],
-    featuredRank: 1,
+    featuredRank: 2,
   },
   {
     id: 'fno-analytics',
@@ -242,7 +264,7 @@ export const projects = [
       github: 'https://github.com/Pratham-Jain-3903/fno-analytics',
     },
     collaborators: [],
-    featuredRank: 4,
+    featuredRank: 5,
   },
   {
     id: 'smart-retail-scanner-pro',

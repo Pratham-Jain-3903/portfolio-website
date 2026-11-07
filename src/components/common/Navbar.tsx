@@ -14,7 +14,8 @@ const navLinks = [
   // { name: 'Objective', href: '#objective' },
   // { name: 'Experience', href: '#experience' },
   // { name: 'Skills', href: '#skills' },
-  { name: 'Contact', href: '#contact-info' }
+  { name: 'Notebook', href: '/notebook' },
+  { name: 'Contact', href: '/#contact-info' }
 ];
 
 export default function Navbar() {

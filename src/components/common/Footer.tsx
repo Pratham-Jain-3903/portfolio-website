@@ -30,7 +30,7 @@ export default function Footer() {
               Pratham Jain
             </Link>
             <p className="mt-3 text-sm">
-              Data Engineer & Machine Learning Engineer. Passionate about building scalable solutions and driving innovation through data.
+              Market data engineer and quant developer. I build data pipelines and trading systems, and write up what I test in the Notebook.
             </p>
           </div>
 

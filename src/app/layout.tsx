@@ -24,26 +24,27 @@ const notoSans = Noto_Sans({
 
 // Enhanced metadata for better SEO and social sharing
 export const metadata: Metadata = {
+  metadataBase: new URL('https://prathamjain.in'),
+  alternates: { canonical: '/' },
   title: {
     template: '%s | Pratham Jain',
-    default: 'Pratham Jain | Data Engineer & ML Engineer',
+    default: 'Pratham Jain | Market Data Engineer & Quant Developer',
   },
-  description: 'Pratham Jain is a Data Engineer and Machine Learning Engineer specializing in building data pipelines and AI solutions.',
-  keywords: ['data engineer', 'machine learning', 'portfolio', 'Pratham Jain', 'developer'],
+  description: 'Pratham Jain builds market-data pipelines, trading systems and tested quantitative experiments in Python and C++.',
+  keywords: ['market data engineer', 'quant developer', 'data engineer', 'C++', 'trading systems', 'Pratham Jain'],
   creator: 'Pratham Jain',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://prathamjain.com',
-    title: 'Pratham Jain | Data Engineer & ML Engineer',
-    description: 'Personal portfolio showcasing my projects, skills, and experience in data engineering and machine learning.',
+    url: '/',
+    title: 'Pratham Jain | Market Data Engineer & Quant Developer',
+    description: 'Market-data pipelines, trading systems and tested quantitative experiments.',
     siteName: 'Pratham Jain Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Pratham Jain | Data Engineer & ML Engineer',
-    description: 'Personal portfolio showcasing my projects, skills, and experience in data engineering and machine learning.',
-    creator: '@prathamjain',
+    title: 'Pratham Jain | Market Data Engineer & Quant Developer',
+    description: 'Market-data pipelines, trading systems and tested quantitative experiments.',
   },
 };
 
