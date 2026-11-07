@@ -21,7 +21,8 @@ describe('blog content', () => {
 
   it('points every image at a file in /public', () => {
     for (const entry of blogPosts) {
-      if (entry.image) expect(existsSync(path.join(process.cwd(), 'public', entry.image.src))).toBe(true);
+      expect(entry.image.alt.length).toBeGreaterThan(20);
+      expect(existsSync(path.join(process.cwd(), 'public', entry.image.src))).toBe(true);
     }
   });
 

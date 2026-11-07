@@ -11,7 +11,8 @@ export interface BlogPost {
   /** One or two sentences: what was asked and what came out. Used on cards and in link previews. */
   summary: string;
   findings: readonly BlogFinding[];
-  image?: { src: string; alt: string; width: number; height: number };
+  /** Required: every post ships with a comic or a real screenshot. */
+  image: { src: string; alt: string; width: number; height: number };
   /** Paragraphs, rendered in order. */
   body: readonly string[];
   /** What I would do differently or test next. */
@@ -82,6 +83,7 @@ export const blogPosts: readonly BlogPost[] = [
     next: 'Next: what happens when you only know your edge roughly, and how much Kelly to give up for that uncertainty.',
     stack: ['C++17', 'Monte Carlo', 'Python', 'Matplotlib'],
     links: {
+      code: 'https://github.com/Pratham-Jain-3903/kelly-sizings',
       source: 'https://papers.ssrn.com/abstract=2856963',
     },
   },
@@ -151,6 +153,12 @@ export const blogPosts: readonly BlogPost[] = [
       { label: 'Biggest single win', value: 'one process per feed' },
       { label: 'Tail latency after', value: 'down by more than 10×' },
     ],
+    image: {
+      src: '/blog/measure-the-measurement.png',
+      alt: 'Comic: per-tick profiling made latency about 3 times worse; then the whole server, with core 0 shared with the kernel and a disk snapshot that forks every minute',
+      width: 1200,
+      height: 675,
+    },
     body: [
       'I’d turned on detailed per-tick profiling to find the slow spots. With it on, tail latency nearly tripled. Every timestamp and every stack capture sat directly on the hot path, on every single tick, so the profiler was mostly measuring itself.',
       'The second lesson came from looking past the process to the machine it runs on. Latency belongs to the whole box. Core 0 is often where Linux puts its own housekeeping and interrupts, so anything latency-sensitive sitting there quietly shares it with the kernel. An in-memory store that snapshots to disk on a timer will fork and write on that schedule, whether the hot path likes it or not. And a binary built on one machine has to match the system libraries of the one it runs on, or it won’t start where it matters.',
@@ -171,6 +179,12 @@ export const blogPosts: readonly BlogPost[] = [
       { label: 'Writer killed at', value: '25%, 50% and 90% of a publish' },
       { label: 'Order of checks', value: 'correctness, isolation, recovery, compatibility, speed' },
     ],
+    image: {
+      src: '/blog/failure-before-speed.png',
+      alt: 'Comic: a usual speed benchmark versus killing the writer at 25%, 50% and 90% of a publish while eight readers must see a whole version',
+      width: 1200,
+      height: 675,
+    },
     body: [
       'The requirement was near-continuous readers plus regular publication of new data, on a workload already heavily coupled to DuckDB SQL. A SELECT leaderboard can’t answer whether a new engine survives that.',
       'So the test matrix looks like operations, not a benchmark: eight or more concurrent readers, one writer publishing a new snapshot, one reader whose query spans the publish boundary, the writer killed at 25%, 50% and 90% of publication, forced memory pressure, a rollback of a bad publish, a restart that must come back to the last good state, and a replay of the real SQL corpus.',
@@ -190,6 +204,12 @@ export const blogPosts: readonly BlogPost[] = [
       { label: 'Run states instead of two', value: '5' },
       { label: 'Recomputation after a downstream outage', value: 'none' },
     ],
+    image: {
+      src: '/blog/run-states.png',
+      alt: 'Comic: a finished simulation marked FAILED by a 502 error, versus five named run states where only the degraded step is retried',
+      width: 1200,
+      height: 675,
+    },
     body: [
       'The simulation completed and every batch finished. Then the workflow failed anyway, because a downstream index API returned HTTP 502 while metrics were being generated. Re-running everything would have recomputed hours of valid work.',
       'A single SUCCESS or FAILED state hides that. I’d rather model the run as SIMULATION_COMPLETE, TRADEBOOK_PUBLISHED, EXTERNAL_METRICS_PENDING, METRICS_DEGRADED_EXTERNAL and FINALIZED, because each has a different recovery.',
